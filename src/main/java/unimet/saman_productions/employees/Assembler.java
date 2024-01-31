@@ -3,18 +3,13 @@ package unimet.saman_productions.employees;
 import unimet.saman_productions.studios.Studio;
 
 public class Assembler extends Employee {
-  private static double DELAY = 2;
-  private static int SALARY = 50;
-
-  private Studio studio;
-
-  private int standardEpisodeCount = 0;
-  private int plotTwistEpisodeCount = 0;
+  public static final double DELAY = 2;
+  public static final int SALARY = 50;
 
   private int plotTwistGapCount = 0;
 
   public Assembler(Studio studio) {
-    this.studio = studio;
+    super(studio);
   }
 
   @Override
@@ -31,13 +26,13 @@ public class Assembler extends Employee {
     while (true) {
       try {
         Thread.sleep(getDelay());
-        if (plotTwistGapCount == studio.getPlotTwistGap()) {
-          if (assemblePlotTwistEpisode()) {
+        if (plotTwistGapCount == getStudio().getPlotTwistGap()) {
+          if (getStudio().makePlotTwistEpisode()) {
             System.out.println("PlotTwist Creado");
             plotTwistGapCount = 0;
           }
         } else {
-          if (assembleStandardEpisode()) {
+          if (getStudio().makeStandardEpisode()) {
             System.out.println("Episodio Creado");
             plotTwistGapCount += 1;
           }
@@ -46,53 +41,5 @@ public class Assembler extends Employee {
         e.printStackTrace();
       }
     }
-  }
-
-  private boolean assembleStandardEpisode() {
-    if (Screenwriter.getSharedDrive().getCount() >= studio.getScripts()
-        && SetDesigner.getSharedDrive().getCount() >= studio.getScenes()
-        && Animator.getSharedDrive().getCount() >= studio.getAnimations()
-        && VoiceActor.getSharedDrive().getCount() >= studio.getDubs()) {
-
-      Screenwriter.getSharedDrive().release(studio.getScripts());
-      SetDesigner.getSharedDrive().release(studio.getScenes());
-      Animator.getSharedDrive().release(studio.getAnimations());
-      VoiceActor.getSharedDrive().release(studio.getDubs());
-
-      standardEpisodeCount += 1;
-
-      return true;
-    }
-
-    return false;
-  }
-
-  private boolean assemblePlotTwistEpisode() {
-    if (Screenwriter.getSharedDrive().getCount() >= studio.getScripts()
-        && SetDesigner.getSharedDrive().getCount() >= studio.getScenes()
-        && Animator.getSharedDrive().getCount() >= studio.getAnimations()
-        && VoiceActor.getSharedDrive().getCount() >= studio.getDubs()
-        && PlotTwistWriter.getSharedDrive().getCount() >= studio.getPlotTwistAmount()) {
-
-      Screenwriter.getSharedDrive().release(studio.getScripts());
-      SetDesigner.getSharedDrive().release(studio.getScenes());
-      Animator.getSharedDrive().release(studio.getAnimations());
-      VoiceActor.getSharedDrive().release(studio.getDubs());
-      PlotTwistWriter.getSharedDrive().release(studio.getPlotTwistAmount());
-
-      plotTwistEpisodeCount += 1;
-
-      return true;
-    }
-
-    return false;
-  }
-
-  public int getStandardEpisodeCount() {
-    return standardEpisodeCount;
-  }
-
-  public int getPlotTwistEpisodeCount() {
-    return plotTwistEpisodeCount;
   }
 }

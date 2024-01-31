@@ -1,14 +1,20 @@
 package unimet.saman_productions.employees;
 
+import unimet.saman_productions.studios.Studio;
+
 public class ProjectManager extends Employee {
-  private static double REVIEW_DELAY = 1 / 2;
-  private static double ANIME_DELAY = 1 / 2;
-  private static double DEADLINE_DELAY = 8;
-  private static int REVIEW_COUNT = 16;
-  private static int SALARY = 40;
+  public static final double REVIEW_DELAY = 1 / 2;
+  public static final double ANIME_DELAY = 1 / 2;
+  public static final double DEADLINE_DELAY = 8;
+  public static final int REVIEW_COUNT = 16;
+  public static final int SALARY = 40;
 
   private boolean working = false;
   private int reviewCount = 0;
+
+  public ProjectManager(Studio studio) {
+    super(studio);
+  }
 
   @Override
   public int getSalary() {

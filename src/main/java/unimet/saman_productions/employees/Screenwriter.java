@@ -1,13 +1,15 @@
 package unimet.saman_productions.employees;
 
-import unimet.saman_productions.Drive;
+import unimet.saman_productions.studios.Studio;
 
 public class Screenwriter extends StudioEmployee {
-  private static double DELAY = 4;
-  private static int SALARY = 20;
-  private static int DRIVE_SIZE = 25;
+  public static final double DELAY = 4;
+  public static final int SALARY = 20;
+  public static final int DRIVE_SIZE = 25;
 
-  private static Drive drive = new Drive(DRIVE_SIZE);
+  public Screenwriter(Studio studio) {
+    super(studio);
+  }
 
   @Override
   public int getSalary() {
@@ -17,14 +19,5 @@ public class Screenwriter extends StudioEmployee {
   @Override
   public long getDelay() {
     return daysToMilliseconds(DELAY);
-  }
-
-  @Override
-  public Drive getDrive() {
-    return drive;
-  }
-
-  public static Drive getSharedDrive() {
-    return drive;
   }
 }

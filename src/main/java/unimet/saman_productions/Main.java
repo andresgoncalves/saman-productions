@@ -9,16 +9,18 @@ import unimet.saman_productions.employees.Screenwriter;
 import unimet.saman_productions.employees.SetDesigner;
 import unimet.saman_productions.employees.VoiceActor;
 import unimet.saman_productions.studios.CartoonNetwork;
+import unimet.saman_productions.studios.Studio;
 
 public class Main {
     public static void main(String[] args) {
-        new Screenwriter().start();
-        new SetDesigner().start();
-        new Animator().start();
-        new VoiceActor().start();
-        new PlotTwistWriter().start();
-        new Assembler(new CartoonNetwork()).start();
-        new ProjectManager().start();
-        new Director().start();
+        Studio cartoonNetwork = new CartoonNetwork();
+        new Screenwriter(cartoonNetwork).start();
+        new SetDesigner(cartoonNetwork).start();
+        new Animator(cartoonNetwork).start();
+        new VoiceActor(cartoonNetwork).start();
+        new PlotTwistWriter(cartoonNetwork).start();
+        new Assembler(cartoonNetwork).start();
+        new ProjectManager(cartoonNetwork).start();
+        new Director(cartoonNetwork).start();
     }
 }

@@ -1,13 +1,15 @@
 package unimet.saman_productions.employees;
 
-import unimet.saman_productions.Drive;
+import unimet.saman_productions.studios.Studio;
 
 public class PlotTwistWriter extends StudioEmployee {
-  private static double DELAY = 2;
-  private static int SALARY = 34;
-  private static int DRIVE_SIZE = 10;
+  public static final double DELAY = 2;
+  public static final int SALARY = 34;
+  public static final int DRIVE_SIZE = 10;
 
-  private static Drive drive = new Drive(DRIVE_SIZE);
+  public PlotTwistWriter(Studio studio) {
+    super(studio);
+  }
 
   @Override
   public int getSalary() {
@@ -18,14 +20,4 @@ public class PlotTwistWriter extends StudioEmployee {
   public long getDelay() {
     return daysToMilliseconds(DELAY);
   }
-
-  @Override
-  public Drive getDrive() {
-    return drive;
-  }
-
-  public static Drive getSharedDrive() {
-    return drive;
-  }
-
 }
