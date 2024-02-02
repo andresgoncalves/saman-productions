@@ -13,10 +13,10 @@ public abstract class StudioEmployee extends Employee {
 
   @Override
   public void run() {
-    while (true) {
+    while (!isInterrupted()) {
       try {
         Thread.sleep(getDelay());
-        getStudio().getDriveManager().getDrive(this.getClass()).acquire();
+        getStudio().getDriveManager().getDrive(this.getClass()).upload();
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

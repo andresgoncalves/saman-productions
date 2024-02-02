@@ -1,4 +1,4 @@
-package unimet.saman_productions;
+package unimet.saman_productions.drives;
 
 import unimet.saman_productions.employees.Animator;
 import unimet.saman_productions.employees.PlotTwistWriter;
@@ -13,12 +13,20 @@ public class DriveManager {
   private Drive dubsDrive;
   private Drive plotTwistsDrive;
 
+  private Drive standardEpisodeDrive;
+  private Drive plotTwistEpisodeDrive;
+  private Drive publishedDrive;
+
   public DriveManager() {
-    scriptsDrive = new Drive(Screenwriter.DRIVE_SIZE);
-    scenesDrive = new Drive(SetDesigner.DRIVE_SIZE);
-    animationsDrive = new Drive(Animator.DRIVE_SIZE);
-    dubsDrive = new Drive(VoiceActor.DRIVE_SIZE);
-    plotTwistsDrive = new Drive(PlotTwistWriter.DRIVE_SIZE);
+    scriptsDrive = new LimitedDrive(Screenwriter.DRIVE_SIZE);
+    scenesDrive = new LimitedDrive(SetDesigner.DRIVE_SIZE);
+    animationsDrive = new LimitedDrive(Animator.DRIVE_SIZE);
+    dubsDrive = new LimitedDrive(VoiceActor.DRIVE_SIZE);
+    plotTwistsDrive = new LimitedDrive(PlotTwistWriter.DRIVE_SIZE);
+
+    standardEpisodeDrive = new Drive();
+    plotTwistEpisodeDrive = new Drive();
+    publishedDrive = new Drive();
   }
 
   public Drive getDrive(Class<?> type) {
@@ -35,5 +43,17 @@ public class DriveManager {
     }
 
     throw new RuntimeException("El drive solicitado no existe");
+  }
+
+  public Drive getStandardEpisodeDrive() {
+    return standardEpisodeDrive;
+  }
+
+  public Drive getPlotTwistEpisodeDrive() {
+    return plotTwistEpisodeDrive;
+  }
+
+  public Drive getPublishedDrive() {
+    return publishedDrive;
   }
 }

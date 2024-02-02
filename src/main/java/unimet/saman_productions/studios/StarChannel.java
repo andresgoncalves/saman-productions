@@ -5,10 +5,14 @@ public class StarChannel extends Studio {
   private static int SCENES = 3;
   private static int ANIMATIONS = 4;
   private static int DUBS = 6;
-  private static int PROFIT = 350000;
+  private static int STANDARD_PROFIT = 350000;
   private static int PLOT_TWIST_GAP = 6;
   private static int PLOT_TWIST_AMOUNT = 5;
   private static int PLOT_TWIST_PROFIT = 800000;
+
+  public StarChannel(int deadline) {
+    super(deadline);
+  }
 
   @Override
   public int getScripts() {
@@ -31,8 +35,8 @@ public class StarChannel extends Studio {
   }
 
   @Override
-  public int getProfit() {
-    return PROFIT;
+  public int getStandardProfit() {
+    return STANDARD_PROFIT;
   }
 
   @Override

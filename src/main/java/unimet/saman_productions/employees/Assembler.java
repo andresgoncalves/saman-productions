@@ -23,16 +23,16 @@ public class Assembler extends Employee {
 
   @Override
   public void run() {
-    while (true) {
+    while (!isInterrupted()) {
       try {
         Thread.sleep(getDelay());
         if (plotTwistGapCount == getStudio().getPlotTwistGap()) {
-          if (getStudio().makePlotTwistEpisode()) {
+          if (getStudio().assemblePlotTwistEpisode()) {
             System.out.println("PlotTwist Creado");
             plotTwistGapCount = 0;
           }
         } else {
-          if (getStudio().makeStandardEpisode()) {
+          if (getStudio().assembleStandardEpisode()) {
             System.out.println("Episodio Creado");
             plotTwistGapCount += 1;
           }

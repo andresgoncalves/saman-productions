@@ -3,7 +3,7 @@ package unimet.saman_productions.employees;
 import unimet.saman_productions.studios.Studio;
 
 public class VoiceActor extends StudioEmployee {
-  public static final double DELAY = 1 / 5;
+  public static final double DELAY = (double) 1 / 5;
   public static final int SALARY = 16;
   public static final int DRIVE_SIZE = 35;
 

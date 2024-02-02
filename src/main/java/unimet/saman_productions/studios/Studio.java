@@ -1,7 +1,8 @@
 package unimet.saman_productions.studios;
 
-import unimet.saman_productions.DriveManager;
+import unimet.saman_productions.drives.DriveManager;
 import unimet.saman_productions.employees.Animator;
+import unimet.saman_productions.employees.EmployeeManager;
 import unimet.saman_productions.employees.PlotTwistWriter;
 import unimet.saman_productions.employees.Screenwriter;
 import unimet.saman_productions.employees.SetDesigner;
@@ -15,16 +16,24 @@ public abstract class Studio {
   private int standardEpisodeCount = 0;
   private int plotTwistEpisodeCount = 0;
 
-  private DriveManager driveManager = new DriveManager();
+  private int deadlineCounter = 0;
+  private final int deadline;
 
-  public Studio() {
+  private DriveManager driveManager = new DriveManager();
+  private EmployeeManager employeeManager;
+
+  int day = 0;
+
+  public Studio(int deadline) {
+    this.deadline = deadlineCounter = deadline;
     new Thread() {
       @Override
       public void run() {
-        while (true) {
+        while (!isInterrupted()) {
           try {
+            day += 1;
+            System.out.println(">>> Día %d <<< (%d días para el deadline)".formatted(day, deadlineCounter));
             Thread.sleep(1000);
-            System.out.println("Reporte diario:" + "\n> Gastos: " + totalExpenses + "\n> Ingresos: " + totalEarnings);
           } catch (InterruptedException e) {
             e.printStackTrace();
           }
@@ -41,7 +50,7 @@ public abstract class Studio {
 
   public abstract int getDubs();
 
-  public abstract int getProfit();
+  public abstract int getStandardProfit();
 
   public abstract int getPlotTwistGap();
 
@@ -50,23 +59,34 @@ public abstract class Studio {
   public abstract int getPlotTwistProfit();
 
   public DriveManager getDriveManager() {
-
     return driveManager;
   }
 
-  public boolean makeStandardEpisode() {
+  public EmployeeManager getEmployeeManager() {
+    return employeeManager;
+  }
+
+  public void start() {
+    employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
+    employeeManager.startAll();
+  }
+
+  public void stop() {
+    employeeManager.stopAll();
+  }
+
+  public boolean assembleStandardEpisode() {
     if (getDriveManager().getDrive(Screenwriter.class).getCount() >= getScripts()
         && getDriveManager().getDrive(SetDesigner.class).getCount() >= getScenes()
         && getDriveManager().getDrive(Animator.class).getCount() >= getAnimations()
         && getDriveManager().getDrive(VoiceActor.class).getCount() >= getDubs()) {
 
-      getDriveManager().getDrive(Screenwriter.class).release(getScripts());
-      getDriveManager().getDrive(SetDesigner.class).release(getScenes());
-      getDriveManager().getDrive(Animator.class).release(getAnimations());
-      getDriveManager().getDrive(VoiceActor.class).release(getDubs());
+      getDriveManager().getDrive(Screenwriter.class).remove(getScripts());
+      getDriveManager().getDrive(SetDesigner.class).remove(getScenes());
+      getDriveManager().getDrive(Animator.class).remove(getAnimations());
+      getDriveManager().getDrive(VoiceActor.class).remove(getDubs());
 
-      standardEpisodeCount += 1;
-      totalEarnings += getProfit();
+      driveManager.getStandardEpisodeDrive().upload();
 
       return true;
     }
@@ -74,26 +94,55 @@ public abstract class Studio {
     return false;
   }
 
-  public boolean makePlotTwistEpisode() {
+  public boolean assemblePlotTwistEpisode() {
     if (driveManager.getDrive(Screenwriter.class).getCount() >= getScripts()
         && driveManager.getDrive(SetDesigner.class).getCount() >= getScenes()
         && driveManager.getDrive(Animator.class).getCount() >= getAnimations()
         && driveManager.getDrive(VoiceActor.class).getCount() >= getDubs()
         && driveManager.getDrive(PlotTwistWriter.class).getCount() >= getPlotTwistAmount()) {
 
-      driveManager.getDrive(Screenwriter.class).release(getScripts());
-      driveManager.getDrive(SetDesigner.class).release(getScenes());
-      driveManager.getDrive(Animator.class).release(getAnimations());
-      driveManager.getDrive(VoiceActor.class).release(getDubs());
-      driveManager.getDrive(PlotTwistWriter.class).release(getPlotTwistAmount());
+      driveManager.getDrive(Screenwriter.class).remove(getScripts());
+      driveManager.getDrive(SetDesigner.class).remove(getScenes());
+      driveManager.getDrive(Animator.class).remove(getAnimations());
+      driveManager.getDrive(VoiceActor.class).remove(getDubs());
+      driveManager.getDrive(PlotTwistWriter.class).remove(getPlotTwistAmount());
 
-      plotTwistEpisodeCount += 1;
-      totalEarnings += getPlotTwistProfit();
+      driveManager.getPlotTwistEpisodeDrive().upload();
 
       return true;
     }
 
     return false;
+  }
+
+  public int publishStandardEpisodes() {
+    int count = driveManager.getStandardEpisodeDrive().getCount();
+    driveManager.getStandardEpisodeDrive().remove(count);
+    driveManager.getPublishedDrive().upload(count);
+    return count;
+  }
+
+  public int publishPlotTwistEpisodes() {
+    int count = driveManager.getPlotTwistEpisodeDrive().getCount();
+    driveManager.getPlotTwistEpisodeDrive().remove(count);
+    driveManager.getPublishedDrive().upload(count);
+    return count;
+  }
+
+  public void registerEarning(int amount) {
+    totalEarnings += amount;
+  }
+
+  public void registerExpense(int amount) {
+    totalExpenses -= amount;
+  }
+
+  public void decreaseDeadlineCounter() {
+    deadlineCounter -= 1;
+  }
+
+  public void resetDeadlineCounter() {
+    deadlineCounter = deadline;
   }
 
   public int getStandardEpisodeCount() {
@@ -110,5 +159,17 @@ public abstract class Studio {
 
   public int getTotalExpenses() {
     return totalExpenses;
+  }
+
+  public int getTotalUtility() {
+    return totalEarnings - totalExpenses;
+  }
+
+  public int getDeadline() {
+    return deadline;
+  }
+
+  public int getDeadlineCounter() {
+    return deadlineCounter;
   }
 }
