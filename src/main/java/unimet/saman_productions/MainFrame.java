@@ -15,10 +15,12 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JSpinner;
 import unimet.saman_productions.drives.DriveManager;
+import unimet.saman_productions.drives.Drive;
 import unimet.saman_productions.employees.Employee;
 import unimet.saman_productions.employees.EmployeeManager;
 import unimet.saman_productions.employees.ProjectManager;
 import unimet.saman_productions.employees.Screenwriter;
+import unimet.saman_productions.studios.CartoonNetwork;
 import unimet.saman_productions.studios.StarChannel;
 
 
@@ -81,8 +83,8 @@ public class MainFrame extends javax.swing.JFrame {
         Deadline = new javax.swing.JTextField();
         CapítulosDrive = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        chaptersSceneCN = new javax.swing.JTextField();
+        chaptersScreenWriterCN = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -94,18 +96,18 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        chaptersAnimatorCN = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        chapterVoiceCN = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        chaptersPTWriterCN = new javax.swing.JTextField();
         StarChannel = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -287,8 +289,14 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("CARTOON NETWORK");
         CapítulosDrive.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
-        CapítulosDrive.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 90, -1));
-        CapítulosDrive.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 90, -1));
+        CapítulosDrive.add(chaptersSceneCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 90, -1));
+
+        chaptersScreenWriterCN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chaptersScreenWriterCNActionPerformed(evt);
+            }
+        });
+        CapítulosDrive.add(chaptersScreenWriterCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 90, -1));
         CapítulosDrive.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 90, -1));
         CapítulosDrive.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, -1));
 
@@ -330,7 +338,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Capacidad máxima de capítulos:");
         CapítulosDrive.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 200, -1));
-        CapítulosDrive.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 90, -1));
+        CapítulosDrive.add(chaptersAnimatorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 90, -1));
         CapítulosDrive.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 90, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -341,7 +349,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Cantidad de capítulos existentes:");
         CapítulosDrive.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 200, -1));
-        CapítulosDrive.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 90, -1));
+        CapítulosDrive.add(chapterVoiceCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 90, -1));
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Capacidad máxima de capítulos:");
@@ -367,7 +375,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         CapítulosDrive.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 90, -1));
-        CapítulosDrive.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 90, -1));
+        CapítulosDrive.add(chaptersPTWriterCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 90, -1));
 
         jTabbedPane1.addTab("Cartoon Network", CapítulosDrive);
 
@@ -391,6 +399,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Cantidad máxima de capítulos:");
         StarChannel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        maxStarScreenWriter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxStarScreenWriterActionPerformed(evt);
+            }
+        });
         StarChannel.add(maxStarScreenWriter, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 80, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -589,6 +603,21 @@ public class MainFrame extends javax.swing.JFrame {
     public void setPlotTwistChapters(String texto) {
         plotTwistChapters.setText(texto);
     }
+    public void setScreenWriterCN(String texto) {
+        chaptersScreenWriterCN.setText(texto);
+    }
+    public void setSceneChaptersCN(String texto) {
+        chaptersSceneCN.setText(texto);
+    }
+    public void setAnimatorChapCN(String texto) {
+        chaptersAnimatorCN.setText(texto);
+    }
+    public void setChaptersVACN(String texto) {
+        chapterVoiceCN.setText(texto);
+    }
+    public void setChaptersPTWCN(String texto) {
+        chaptersPTWriterCN.setText(texto);
+    }
     
     
     private void CargarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarTxtActionPerformed
@@ -607,13 +636,20 @@ public class MainFrame extends javax.swing.JFrame {
             plotTwist.setText(lector.getGuionistasPlotTwist().toString());
             seconds.setText(lector.getSegundosDay().toString());
             Deadline.setText(lector.getDeadline().toString());
+            
         }
         
-        StarChannel newStarChannel = new StarChannel(lector.getDeadline());
+        StarChannel newStarChannel = new StarChannel(lector.getDeadline(), "SC");
         EmployeeManager employeeManagerStar = new EmployeeManager(newStarChannel, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
-        employeeManagerStar.startAll();
-//        maxStarScreenWriter.setText(newStarChannel);
         StudioView studioView = new StudioView(newStarChannel, this);
+        newStarChannel.start(employeeManagerStar);
+        
+        
+        CartoonNetwork newCartoonNetwork = new CartoonNetwork(lector.getDeadline(), "CN");
+        EmployeeManager employeeManagerCartoon = new EmployeeManager(newCartoonNetwork, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
+        StudioView studioViewCartoon = new StudioView(newCartoonNetwork, this);
+        newCartoonNetwork.start(employeeManagerCartoon);
+        
         
   
         
@@ -650,6 +686,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void DeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeadlineActionPerformed
         deadline = Integer.valueOf(Deadline.getText());
     }//GEN-LAST:event_DeadlineActionPerformed
+
+    private void maxStarScreenWriterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxStarScreenWriterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxStarScreenWriterActionPerformed
+
+    private void chaptersScreenWriterCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chaptersScreenWriterCNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chaptersScreenWriterCNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -698,6 +742,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton actualizeData;
     private javax.swing.JTextField animadores;
     public static javax.swing.JTextField capitulosStar;
+    private javax.swing.JTextField chapterVoiceCN;
+    private javax.swing.JTextField chaptersAnimatorCN;
+    private javax.swing.JTextField chaptersPTWriterCN;
+    private javax.swing.JTextField chaptersSceneCN;
+    private javax.swing.JTextField chaptersScreenWriterCN;
     private javax.swing.JTextField designers;
     private javax.swing.JTextField directorStar;
     private javax.swing.JTextField doblaje;
@@ -756,13 +805,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
@@ -774,9 +820,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField maxStarScreenWriter;

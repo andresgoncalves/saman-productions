@@ -33,12 +33,21 @@ public class StudioView {
         Integer countAnimator = driveManager.getDrive(Animator.class).getCount();
         Integer countVoiceActor = driveManager.getDrive(VoiceActor.class).getCount();
         Integer countPlotTwistWriter = driveManager.getDrive(PlotTwistWriter.class).getCount();
-        mainFrame.setCapitulosStar(countScreenWriter.toString());
-        mainFrame.setSceneChapters(countScene.toString());
-        mainFrame.setAnimatorChapters(countAnimator.toString());
-        mainFrame.setDoblajeChapters(countVoiceActor.toString());
-        mainFrame.setPlotTwistChapters(countPlotTwistWriter.toString());
         
+        if("SC".equals(studio.getName())){
+            mainFrame.setCapitulosStar(countScreenWriter.toString());
+            mainFrame.setSceneChapters(countScene.toString());
+            mainFrame.setAnimatorChapters(countAnimator.toString());
+            mainFrame.setDoblajeChapters(countVoiceActor.toString());
+            mainFrame.setPlotTwistChapters(countPlotTwistWriter.toString());
+        } else if ("NC".equals(studio.getName())){
+            mainFrame.setScreenWriterCN(countScreenWriter.toString());
+            mainFrame.setSceneChaptersCN(countScene.toString());
+            mainFrame.setAnimatorChapCN(countAnimator.toString());
+            mainFrame.setChaptersVACN(countVoiceActor.toString());
+            mainFrame.setChaptersVACN(countPlotTwistWriter.toString());
+        }
+       
     }
         
 }

@@ -9,6 +9,7 @@ import unimet.saman_productions.employees.Screenwriter;
 import unimet.saman_productions.employees.SetDesigner;
 import unimet.saman_productions.employees.VoiceActor;
 
+
 public abstract class Studio {
   private int totalEarnings = 0;
   private int totalExpenses = 0;
@@ -19,13 +20,15 @@ public abstract class Studio {
 
   private int deadlineCounter = 0;
   private final int deadline;
+  private String name;
 
   private DriveManager driveManager = new DriveManager();
   private EmployeeManager employeeManager;
 
   int day = 0;
 
-  public Studio(int deadline) {
+  public Studio(int deadline, String name) {
+    this.name = name;
     this.deadline = deadlineCounter = deadline;
     new Thread() {
       @Override
@@ -63,6 +66,10 @@ public abstract class Studio {
         this.studioView = studioView;
   }
   
+  public String getName(){
+      return name;
+  }
+  
   public StudioView getStudioView() {
       return studioView;
   }
@@ -75,8 +82,8 @@ public abstract class Studio {
     return employeeManager;
   }
 
-  public void start() {
-    employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
+  public void start(EmployeeManager employeeManager) {
+//    employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
     employeeManager.startAll();
   }
 

@@ -10,8 +10,8 @@ public class StarChannel extends Studio {
   private static int PLOT_TWIST_AMOUNT = 5;
   private static int PLOT_TWIST_PROFIT = 800000;
 
-  public StarChannel(int deadline) {
-    super(deadline);
+  public StarChannel(int deadline, String name) {
+    super(deadline, name);
   }
 
   @Override
