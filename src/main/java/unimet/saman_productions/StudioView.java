@@ -65,6 +65,16 @@ public class StudioView {
             }
             Integer countFaults = projectManager.getTotalFaults();
             mainFrame.setFaultsPMSC(countFaults.toString());
+        } else if ("CN".equals(studio.getName())){
+            switch (projectManager.getStatus()) {
+                case ProjectManager.STATUS_WATCHING_ANIME -> mainFrame.setPMStatusCN("Viendo Anime");
+                case ProjectManager.STATUS_REVIEWING_WORK -> mainFrame.setPMStatusCN("Revisando el trabajo");
+                case ProjectManager.STATUS_CHECKING_DEADLINE -> mainFrame.setPMStatusCN("Revisando Deadline");
+                default -> {
+                }
+            }
+            Integer countFaults = projectManager.getTotalFaults();
+            mainFrame.setFaultsPMCN(countFaults.toString());
         }
         
     }
