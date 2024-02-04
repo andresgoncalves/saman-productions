@@ -20,16 +20,18 @@ public abstract class Studio {
 
   private int deadlineCounter = 0;
   private final int deadline;
-  private String name;
+  private final String name;
+  private final int secondsDay;
 
   private DriveManager driveManager = new DriveManager();
   private EmployeeManager employeeManager;
 
   int day = 0;
 
-  public Studio(int deadline, String name) {
+  public Studio(int deadline, String name, int secondsDay) {
     this.name = name;
     this.deadline = deadlineCounter = deadline;
+    this.secondsDay = secondsDay;
     new Thread() {
       @Override
       public void run() {
@@ -62,6 +64,10 @@ public abstract class Studio {
 
   public abstract int getPlotTwistProfit();
   
+  public int getSecondsDay(){
+      return secondsDay;
+  }
+  
   public void setStudioView(StudioView studioView) {
         this.studioView = studioView;
   }
@@ -83,8 +89,10 @@ public abstract class Studio {
   }
 
   public void start(EmployeeManager employeeManager) {
+      this.employeeManager = employeeManager;
+      employeeManager.startAll();
 //    employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
-    employeeManager.startAll();
+   
   }
 
   public void stop() {

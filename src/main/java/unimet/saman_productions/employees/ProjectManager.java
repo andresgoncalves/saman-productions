@@ -70,20 +70,31 @@ public class ProjectManager extends Employee {
       try {
         if (reviewCount < getReviewCount()) {
           status = STATUS_WATCHING_ANIME;
-          Thread.sleep(getAnimeDelay());
+          notifyAndSleep(getAnimeDelay(),"anime");
           status = STATUS_REVIEWING_WORK;
-          Thread.sleep(getReviewDelay());
+          notifyAndSleep(getReviewDelay(), "review");
           reviewCount += 1;
         } else {
           if (getStudio().getDeadlineCounter() > 0) {
             getStudio().decreaseDeadlineCounter();
           }
-          Thread.sleep(getDeadlineDelay());
+          notifyAndSleep(getDeadlineDelay(), "deadline");
           reviewCount = 0;
         }
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
     }
-  }
+  };
+ 
+  public void notifyAndSleep(long time, String type) throws InterruptedException {
+    super.getStudio().getStudioView().actualizePMStatus();
+      switch (type) {
+          case "anime" -> Thread.sleep(time);
+          case "review" -> Thread.sleep(time);
+          case "deadline" -> Thread.sleep(time);
+          default -> {
+          }
+      }
+}
 }

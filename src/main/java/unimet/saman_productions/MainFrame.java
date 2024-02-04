@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import unimet.saman_productions.drives.DriveManager;
 import unimet.saman_productions.drives.Drive;
@@ -41,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
     public Integer ensambladoresNumber;
     public Integer segundosDay;
     public Integer deadline;
+    private StarChannel starchannel;
+    private CartoonNetwork cartoonNetwork;
     
     
    
@@ -80,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
         seconds = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        Deadline = new javax.swing.JTextField();
+        deadlineTxt = new javax.swing.JTextField();
         CapítulosDrive = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         chaptersSceneCN = new javax.swing.JTextField();
@@ -135,12 +138,12 @@ public class MainFrame extends javax.swing.JFrame {
         plotTwistChapters = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
+        deadLineSC = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
+        pmStatusSC = new javax.swing.JTextField();
+        faultsPMStar = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
         jTextField24 = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
@@ -273,12 +276,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel52.setText("Duración en segundos de un día");
         ModificarDatos.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
 
-        Deadline.addActionListener(new java.awt.event.ActionListener() {
+        deadlineTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeadlineActionPerformed(evt);
+                deadlineTxtActionPerformed(evt);
             }
         });
-        ModificarDatos.add(Deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 120, -1));
+        ModificarDatos.add(deadlineTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 120, -1));
 
         jTabbedPane1.addTab("Modificar Datos", ModificarDatos);
 
@@ -471,7 +474,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Días para la entrega: ");
         StarChannel.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
-        StarChannel.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 80, -1));
+        StarChannel.add(deadLineSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 80, -1));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 0, 102));
@@ -480,24 +483,24 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel39.setForeground(new java.awt.Color(0, 0, 0));
         jLabel39.setText("Qué está haciendo:");
-        StarChannel.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
+        StarChannel.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Cantidad de faltas");
-        StarChannel.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
+        StarChannel.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
 
-        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+        pmStatusSC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
+                pmStatusSCActionPerformed(evt);
             }
         });
-        StarChannel.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 80, -1));
-        StarChannel.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 80, -1));
+        StarChannel.add(pmStatusSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 140, -1));
+        StarChannel.add(faultsPMStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 140, -1));
 
         jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setText("Dinero descontado");
-        StarChannel.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, -1, -1));
-        StarChannel.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 80, -1));
+        StarChannel.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
+        StarChannel.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 140, -1));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 102));
@@ -513,7 +516,7 @@ public class MainFrame extends javax.swing.JFrame {
                 directorStarActionPerformed(evt);
             }
         });
-        StarChannel.add(directorStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 80, -1));
+        StarChannel.add(directorStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 120, -1));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(0, 0, 0));
@@ -572,9 +575,9 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+    private void pmStatusSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmStatusSCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
+    }//GEN-LAST:event_pmStatusSCActionPerformed
 
     private void directorStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorStarActionPerformed
         // TODO add your handling code here:
@@ -619,6 +622,17 @@ public class MainFrame extends javax.swing.JFrame {
         chaptersPTWriterCN.setText(texto);
     }
     
+    public void setPmStatusSC(String texto){
+        pmStatusSC.setText(texto);
+    }
+    
+    public void setFaultsPMSC(String texto){
+        faultsPMStar.setText(texto);
+    }
+    
+    public void setDeadLineSC(String texto){
+        deadLineSC.setText(texto);
+    }
     
     private void CargarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarTxtActionPerformed
         JFileChooser fileChooser = new JFileChooser();
@@ -635,21 +649,23 @@ public class MainFrame extends javax.swing.JFrame {
             doblaje.setText(lector.getActoresDoblaje().toString());
             plotTwist.setText(lector.getGuionistasPlotTwist().toString());
             seconds.setText(lector.getSegundosDay().toString());
-            Deadline.setText(lector.getDeadline().toString());
+            deadlineTxt.setText(lector.getDeadline().toString());
+            
+            seconds.setEditable(false);
+            deadlineTxt.setEditable(false);
+            
+            starchannel = new StarChannel(lector.getDeadline(), "SC", Integer.parseInt(seconds.getText()));
+            EmployeeManager employeeManagerStar = new EmployeeManager(starchannel, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
+            StudioView studioView = new StudioView(starchannel, this);
+            starchannel.start(employeeManagerStar);
+
+
+            cartoonNetwork = new CartoonNetwork(lector.getDeadline(), "CN",Integer.parseInt(seconds.getText()));
+            EmployeeManager employeeManagerCartoon = new EmployeeManager(cartoonNetwork, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
+            StudioView studioViewCartoon = new StudioView(cartoonNetwork, this);
+            cartoonNetwork.start(employeeManagerCartoon);
             
         }
-        
-        StarChannel newStarChannel = new StarChannel(lector.getDeadline(), "SC");
-        EmployeeManager employeeManagerStar = new EmployeeManager(newStarChannel, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
-        StudioView studioView = new StudioView(newStarChannel, this);
-        newStarChannel.start(employeeManagerStar);
-        
-        
-        CartoonNetwork newCartoonNetwork = new CartoonNetwork(lector.getDeadline(), "CN");
-        EmployeeManager employeeManagerCartoon = new EmployeeManager(newCartoonNetwork, lector.getGuionistas(), lector.getDesginers(), lector.getAnimadores(), lector.getActoresDoblaje(), lector.getGuionistasPlotTwist(), lector.getEnsambladores());
-        StudioView studioViewCartoon = new StudioView(newCartoonNetwork, this);
-        newCartoonNetwork.start(employeeManagerCartoon);
-        
         
   
         
@@ -660,7 +676,34 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_designersActionPerformed
 
     private void actualizeDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizeDataActionPerformed
-        lector.actualizarDatos(pathTxt, guionistasNumber, designersNumber, animadoresNumber, actoresDoblaje, guionistasNumber, ensambladoresNumber, segundosDay, deadline);
+        if (guionistas != null && designers != null && animadores != null && doblaje != null && plotTwist != null && ensambladores != null && !guionistas.getText().equals("") && !designers.getText().equals("") && !animadores.getText().equals("") &&
+        !doblaje.getText().equals("") && !plotTwist.getText().equals("") && !ensambladores.getText().equals("")) {
+            guionistasNumber = Integer.valueOf(guionistas.getText());
+            designersNumber = Integer.valueOf(designers.getText());
+            animadoresNumber = Integer.valueOf(animadores.getText());
+            actoresDoblaje = Integer.valueOf(doblaje.getText());
+            guionistasPlotTwist = Integer.valueOf(plotTwist.getText());
+            ensambladoresNumber = Integer.valueOf(ensambladores.getText());
+            
+            if(guionistasNumber != 0 && designersNumber != 0 && animadoresNumber != 0 && actoresDoblaje != 0 && guionistasPlotTwist != 0 && ensambladoresNumber != 0){
+                lector.actualizarDatos(pathTxt, guionistasNumber, designersNumber, animadoresNumber, actoresDoblaje, guionistasNumber, ensambladoresNumber, Integer.parseInt(seconds.getText()), Integer.parseInt(deadlineTxt.getText()));
+                starchannel.getEmployeeManager().updateEmployeeNumbers(guionistasNumber, designersNumber, animadoresNumber,actoresDoblaje,guionistasPlotTwist,ensambladoresNumber);
+                cartoonNetwork.getEmployeeManager().updateEmployeeNumbers(guionistasNumber, designersNumber, animadoresNumber,actoresDoblaje,guionistasPlotTwist,ensambladoresNumber);
+            }else {
+                JOptionPane.showMessageDialog(this, "Error: Los campos no pueden tener un valor igual a cero.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: Los campos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+                
+             
+        
+       
+
+       
+        
+        
+        
     }//GEN-LAST:event_actualizeDataActionPerformed
 
     private void animadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animadoresActionPerformed
@@ -683,9 +726,9 @@ public class MainFrame extends javax.swing.JFrame {
         segundosDay = Integer.valueOf(seconds.getText());
     }//GEN-LAST:event_secondsActionPerformed
 
-    private void DeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeadlineActionPerformed
-        deadline = Integer.valueOf(Deadline.getText());
-    }//GEN-LAST:event_DeadlineActionPerformed
+    private void deadlineTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deadlineTxtActionPerformed
+        deadline = Integer.valueOf(deadlineTxt.getText());
+    }//GEN-LAST:event_deadlineTxtActionPerformed
 
     private void maxStarScreenWriterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxStarScreenWriterActionPerformed
         // TODO add your handling code here:
@@ -734,7 +777,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField AnimatorChapters;
     private javax.swing.JPanel CapítulosDrive;
     private javax.swing.JButton CargarTxt;
-    private javax.swing.JTextField Deadline;
     private javax.swing.JTextField DoblajeChapters;
     private javax.swing.JPanel ModificarDatos;
     private javax.swing.JTextField SceneChapters;
@@ -747,10 +789,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField chaptersPTWriterCN;
     private javax.swing.JTextField chaptersSceneCN;
     private javax.swing.JTextField chaptersScreenWriterCN;
+    private javax.swing.JTextField deadLineSC;
+    private javax.swing.JTextField deadlineTxt;
     private javax.swing.JTextField designers;
     private javax.swing.JTextField directorStar;
     private javax.swing.JTextField doblaje;
     private javax.swing.JTextField ensambladores;
+    private javax.swing.JTextField faultsPMStar;
     private javax.swing.JTextField guionistas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -809,9 +854,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
@@ -826,6 +868,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField maxStarScreenWriter;
     private javax.swing.JTextField plotTwist;
     private javax.swing.JTextField plotTwistChapters;
+    private javax.swing.JTextField pmStatusSC;
     private javax.swing.JTextField seconds;
     // End of variables declaration//GEN-END:variables
 }

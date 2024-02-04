@@ -10,8 +10,8 @@ public class CartoonNetwork extends Studio {
   private static int PLOT_TWIST_AMOUNT = 1;
   private static int PLOT_TWIST_PROFIT = 650000;
 
-  public CartoonNetwork(int deadline, String name) {
-    super(deadline, name);
+  public CartoonNetwork(int deadline, String name, int secondsDay) {
+    super(deadline, name, secondsDay);
   }
 
   @Override
