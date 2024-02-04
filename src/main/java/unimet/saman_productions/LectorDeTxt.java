@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class LectorDeTxt {
     private Integer guionistas;
-    private Integer diseñadores;
+    private Integer designers;
     private Integer animadores;
     private Integer actoresDoblaje;
     private Integer guionistasPlotTwist;
@@ -38,7 +38,7 @@ public class LectorDeTxt {
                             guionistas = Integer.parseInt(linea);
                             break;
                         case 2:
-                            diseñadores = Integer.parseInt(linea);
+                            designers = Integer.parseInt(linea);
                             break;
                         case 3:
                             animadores = Integer.parseInt(linea);
@@ -66,9 +66,9 @@ public class LectorDeTxt {
         }
     }
     
-    public void actualizarDatos(String ruta, int guionistas, int diseñadores, int animadores, int actoresDoblaje, int guionistasPlotTwist, int ensambladores, int segundosDay, int deadline) {
+    public void actualizarDatos(String ruta, int guionistas, int designers, int animadores, int actoresDoblaje, int guionistasPlotTwist, int ensambladores, int segundosDay, int deadline) {
         this.guionistas = guionistas;
-        this.diseñadores = diseñadores;
+        this.designers = designers;
         this.animadores = animadores;
         this.actoresDoblaje = actoresDoblaje;
         this.guionistasPlotTwist = guionistasPlotTwist;
@@ -78,7 +78,7 @@ public class LectorDeTxt {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta))) {
             writer.write(guionistas + "\n");
-            writer.write(diseñadores + "\n");
+            writer.write(designers + "\n");
             writer.write(animadores + "\n");
             writer.write(actoresDoblaje + "\n");
             writer.write(guionistasPlotTwist + "\n");
@@ -94,8 +94,8 @@ public class LectorDeTxt {
         return guionistas;
     }
 
-    public Integer getDiseñadores() {
-        return diseñadores;
+    public Integer getDesginers() {
+        return designers;
     }
 
     public Integer getAnimadores() {

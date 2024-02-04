@@ -1,5 +1,6 @@
 package unimet.saman_productions.studios;
 
+import unimet.saman_productions.StudioView;
 import unimet.saman_productions.drives.DriveManager;
 import unimet.saman_productions.employees.Animator;
 import unimet.saman_productions.employees.EmployeeManager;
@@ -9,9 +10,9 @@ import unimet.saman_productions.employees.SetDesigner;
 import unimet.saman_productions.employees.VoiceActor;
 
 public abstract class Studio {
-
   private int totalEarnings = 0;
   private int totalExpenses = 0;
+  private StudioView studioView;
 
   private int standardEpisodeCount = 0;
   private int plotTwistEpisodeCount = 0;
@@ -41,7 +42,7 @@ public abstract class Studio {
       }
     }.start();
   }
-
+  
   public abstract int getScripts();
 
   public abstract int getScenes();
@@ -57,7 +58,15 @@ public abstract class Studio {
   public abstract int getPlotTwistAmount();
 
   public abstract int getPlotTwistProfit();
-
+  
+  public void setStudioView(StudioView studioView) {
+        this.studioView = studioView;
+  }
+  
+  public StudioView getStudioView() {
+      return studioView;
+  }
+  
   public DriveManager getDriveManager() {
     return driveManager;
   }
