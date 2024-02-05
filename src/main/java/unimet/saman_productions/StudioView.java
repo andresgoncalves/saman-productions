@@ -27,7 +27,7 @@ public class StudioView {
         this.mainFrame = mainFrame;
     }
     
-    public void notifyUpload(){
+    public synchronized void notifyUpload(){
         DriveManager driveManager = studio.getDriveManager();
         Integer countScreenWriter = driveManager.getDrive(Screenwriter.class).getCount();
         Integer countScene = driveManager.getDrive(SetDesigner.class).getCount();
@@ -49,11 +49,11 @@ public class StudioView {
             mainFrame.setAnimatorChapCN(countAnimator.toString());
             mainFrame.setChaptersVACN(countVoiceActor.toString());
             mainFrame.setChaptersPTWCN(countPlotTwistWriter.toString());
-            mainFrame.setChaptersVACN(countPlotTwistWriter.toString());
+            mainFrame.setDeadLineCN(counterDeadline.toString());
         }
     }
     
-    public void actualizePMStatus(){
+    public synchronized void actualizePMStatus(){
         ProjectManager projectManager = studio.getEmployeeManager().getProjectManager();
         if("SC".equals(studio.getName())){
             switch (projectManager.getStatus()) {

@@ -98,45 +98,51 @@ public abstract class Studio {
   public void stop() {
     employeeManager.stopAll();
   }
+  
+  Object assemblerMutex = new Object();
 
   public boolean assembleStandardEpisode() {
-    if (getDriveManager().getDrive(Screenwriter.class).getCount() >= getScripts()
-        && getDriveManager().getDrive(SetDesigner.class).getCount() >= getScenes()
-        && getDriveManager().getDrive(Animator.class).getCount() >= getAnimations()
-        && getDriveManager().getDrive(VoiceActor.class).getCount() >= getDubs()) {
+    synchronized(assemblerMutex) {
+        if (getDriveManager().getDrive(Screenwriter.class).getCount() >= getScripts()
+            && getDriveManager().getDrive(SetDesigner.class).getCount() >= getScenes()
+            && getDriveManager().getDrive(Animator.class).getCount() >= getAnimations()
+            && getDriveManager().getDrive(VoiceActor.class).getCount() >= getDubs()) {
 
-      getDriveManager().getDrive(Screenwriter.class).remove(getScripts());
-      getDriveManager().getDrive(SetDesigner.class).remove(getScenes());
-      getDriveManager().getDrive(Animator.class).remove(getAnimations());
-      getDriveManager().getDrive(VoiceActor.class).remove(getDubs());
+          getDriveManager().getDrive(Screenwriter.class).remove(getScripts());
+          getDriveManager().getDrive(SetDesigner.class).remove(getScenes());
+          getDriveManager().getDrive(Animator.class).remove(getAnimations());
+          getDriveManager().getDrive(VoiceActor.class).remove(getDubs());
 
-      driveManager.getStandardEpisodeDrive().upload();
+          driveManager.getStandardEpisodeDrive().upload();
 
-      return true;
+          return true;
+        }
+
+        return false;
     }
-
-    return false;
   }
 
   public boolean assemblePlotTwistEpisode() {
-    if (driveManager.getDrive(Screenwriter.class).getCount() >= getScripts()
-        && driveManager.getDrive(SetDesigner.class).getCount() >= getScenes()
-        && driveManager.getDrive(Animator.class).getCount() >= getAnimations()
-        && driveManager.getDrive(VoiceActor.class).getCount() >= getDubs()
-        && driveManager.getDrive(PlotTwistWriter.class).getCount() >= getPlotTwistAmount()) {
+    synchronized(assemblerMutex) {
+        if (driveManager.getDrive(Screenwriter.class).getCount() >= getScripts()
+            && driveManager.getDrive(SetDesigner.class).getCount() >= getScenes()
+            && driveManager.getDrive(Animator.class).getCount() >= getAnimations()
+            && driveManager.getDrive(VoiceActor.class).getCount() >= getDubs()
+            && driveManager.getDrive(PlotTwistWriter.class).getCount() >= getPlotTwistAmount()) {
 
-      driveManager.getDrive(Screenwriter.class).remove(getScripts());
-      driveManager.getDrive(SetDesigner.class).remove(getScenes());
-      driveManager.getDrive(Animator.class).remove(getAnimations());
-      driveManager.getDrive(VoiceActor.class).remove(getDubs());
-      driveManager.getDrive(PlotTwistWriter.class).remove(getPlotTwistAmount());
+          driveManager.getDrive(Screenwriter.class).remove(getScripts());
+          driveManager.getDrive(SetDesigner.class).remove(getScenes());
+          driveManager.getDrive(Animator.class).remove(getAnimations());
+          driveManager.getDrive(VoiceActor.class).remove(getDubs());
+          driveManager.getDrive(PlotTwistWriter.class).remove(getPlotTwistAmount());
 
-      driveManager.getPlotTwistEpisodeDrive().upload();
+          driveManager.getPlotTwistEpisodeDrive().upload();
 
-      return true;
+          return true;
+        }
+
+        return false;
     }
-
-    return false;
   }
 
   public int publishStandardEpisodes() {
