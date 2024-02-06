@@ -5,6 +5,7 @@
 package unimet.saman_productions;
 import unimet.saman_productions.drives.DriveManager;
 import unimet.saman_productions.employees.Animator;
+import unimet.saman_productions.employees.Director;
 import unimet.saman_productions.employees.PlotTwistWriter;
 import unimet.saman_productions.employees.ProjectManager;
 import unimet.saman_productions.employees.Screenwriter;
@@ -75,6 +76,28 @@ public class StudioView {
             }
             Integer countFaults = projectManager.getTotalFaults();
             mainFrame.setFaultsPMCN(countFaults.toString());
+        }
+        
+    }
+    
+    public synchronized void actualizeDirectorStatus(){
+        Director director = studio.getEmployeeManager().getDirector();
+        if("SC".equals(studio.getName())){
+            switch (director.getStatus()) {
+                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusSC("IDLE");
+                case Director.STATUS_PUBLISHING -> mainFrame.setDirectorStatusSC("Publicando");
+                case Director.STATUS_SUPERVISING -> mainFrame.setDirectorStatusSC("");
+                default -> {
+                }
+            }
+        } else if ("CN".equals(studio.getName())){
+            switch (director.getStatus()) {
+                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusCN("IDLE");
+                case Director.STATUS_PUBLISHING -> mainFrame.setDirectorStatusCN("Publicando");
+                case Director.STATUS_SUPERVISING -> mainFrame.setDirectorStatusCN("Supervisando");
+                default -> {
+                }
+            }
         }
         
     }

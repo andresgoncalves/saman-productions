@@ -77,4 +77,14 @@ public class Director extends Employee {
   public int getStatus() {
     return status;
   }
+   public void notifyAndSleep(long time, String type) throws InterruptedException {
+    super.getStudio().getStudioView().actualizePMStatus();
+      switch (type) {
+          case "anime" -> Thread.sleep(time);
+          case "review" -> Thread.sleep(time);
+          case "deadline" -> Thread.sleep(time);
+          default -> {
+          }
+      }
+}
 }
