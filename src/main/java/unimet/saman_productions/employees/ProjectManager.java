@@ -71,8 +71,8 @@ public class ProjectManager extends Employee {
 
   @Override
   public void run() {
-    while (!isInterrupted()) {
-      try {
+    try {
+      while (!isInterrupted()) {
         if (reviewCount < getReviewCount()) {
           status = STATUS_WATCHING_ANIME;
           notifyAndSleep(getAnimeDelay());
@@ -87,9 +87,8 @@ public class ProjectManager extends Employee {
           notifyAndSleep(getDeadlineDelay());
           reviewCount = 0;
         }
-      } catch (InterruptedException e) {
-        e.printStackTrace();
       }
+    } catch (InterruptedException e) {
     }
   };
 

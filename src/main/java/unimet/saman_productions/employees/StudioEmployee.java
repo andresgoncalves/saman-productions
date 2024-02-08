@@ -1,4 +1,5 @@
 package unimet.saman_productions.employees;
+
 import unimet.saman_productions.studios.Studio;
 
 public abstract class StudioEmployee extends Employee {
@@ -12,18 +13,17 @@ public abstract class StudioEmployee extends Employee {
 
   @Override
   public void run() {
-    while (!isInterrupted()) {
-      try {
+    try {
+      while (!isInterrupted()) {
         NotifyAndSleep(getDelay());
         getStudio().getDriveManager().getDrive(this.getClass()).upload();
-      } catch (InterruptedException e) {
-        e.printStackTrace();
       }
+    } catch (InterruptedException e) {
     }
   };
-  
-  protected void NotifyAndSleep(long time) throws InterruptedException{
-      super.getStudio().getStudioView().notifyUpload();
-      Thread.sleep(time);
+
+  protected void NotifyAndSleep(long time) throws InterruptedException {
+    super.getStudio().getStudioView().notifyUpload();
+    Thread.sleep(time);
   }
 }

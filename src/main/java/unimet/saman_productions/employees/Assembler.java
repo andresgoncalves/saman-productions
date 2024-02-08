@@ -23,8 +23,8 @@ public class Assembler extends Employee {
 
   @Override
   public void run() {
-    while (!isInterrupted()) {
-      try {
+    try {
+      while (!isInterrupted()) {
         notifyAndSleep(getDelay());
         if (plotTwistGapCount == getStudio().getPlotTwistGap()) {
           if (getStudio().assemblePlotTwistEpisode()) {
@@ -37,9 +37,8 @@ public class Assembler extends Employee {
             plotTwistGapCount += 1;
           }
         }
-      } catch (InterruptedException e) {
-        e.printStackTrace();
       }
+    } catch (InterruptedException e) {
     }
   }
 

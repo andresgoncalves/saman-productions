@@ -28,26 +28,10 @@ public abstract class Studio {
 
   private Object assemblerMutex = new Object();
 
-  private int currentDay = 0;
-
   public Studio(int deadline, String name, int secondsDay) {
     this.name = name;
     this.deadline = deadlineCounter = deadline;
     this.secondsDay = secondsDay;
-    new Thread() {
-      @Override
-      public void run() {
-        while (!isInterrupted()) {
-          try {
-            currentDay += 1;
-            System.out.println(">>> Día %d <<< (%d días para el deadline)".formatted(currentDay, deadlineCounter));
-            Thread.sleep(getSecondsDay() * 1000);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
-        }
-      }
-    }.start();
   }
 
   public abstract int getScripts();

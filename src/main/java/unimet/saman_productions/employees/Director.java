@@ -23,8 +23,8 @@ public class Director extends Employee {
 
   @Override
   public void run() {
-    while (!isInterrupted()) {
-      try {
+    try {
+      while (!isInterrupted()) {
         if (getStudio().getDeadlineCounter() == 0) {
           status = STATUS_PUBLISHING;
           int standardEpisodeCount = getStudio().publishStandardEpisodes();
@@ -72,9 +72,8 @@ public class Director extends Employee {
         }
         getStudio().payEmployees();
         notifyFinalDay();
-      } catch (InterruptedException e) {
-        e.printStackTrace();
       }
+    } catch (InterruptedException e) {
     }
   }
 
