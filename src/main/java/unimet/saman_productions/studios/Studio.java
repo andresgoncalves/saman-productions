@@ -26,7 +26,9 @@ public abstract class Studio {
   private DriveManager driveManager = new DriveManager();
   private EmployeeManager employeeManager;
 
-  int day = 0;
+  private Object assemblerMutex = new Object();
+
+  private int currentDay = 0;
 
   public Studio(int deadline, String name, int secondsDay) {
     this.name = name;
@@ -37,9 +39,9 @@ public abstract class Studio {
       public void run() {
         while (!isInterrupted()) {
           try {
-            day += 1;
-            System.out.println(">>> Día %d <<< (%d días para el deadline)".formatted(day, deadlineCounter));
-            Thread.sleep(1000);
+            currentDay += 1;
+            System.out.println(">>> Día %d <<< (%d días para el deadline)".formatted(currentDay, deadlineCounter));
+            Thread.sleep(getSecondsDay() * 1000);
           } catch (InterruptedException e) {
             e.printStackTrace();
           }
@@ -91,15 +93,11 @@ public abstract class Studio {
   public void start(EmployeeManager employeeManager) {
     this.employeeManager = employeeManager;
     employeeManager.startAll();
-    // employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
-
   }
 
   public void stop() {
     employeeManager.stopAll();
   }
-
-  Object assemblerMutex = new Object();
 
   public boolean assembleStandardEpisode() {
     synchronized (assemblerMutex) {
