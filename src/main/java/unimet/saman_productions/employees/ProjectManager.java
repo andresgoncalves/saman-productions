@@ -28,6 +28,10 @@ public class ProjectManager extends Employee {
     return SALARY - FAULT_DISCOUNT * currentFaults;
   }
 
+  public int getTotalSalaryDiscount() {
+    return FAULT_DISCOUNT * totalFaults;
+  }
+
   public void registerFault() {
     currentFaults += 1;
     totalFaults += 1;
