@@ -4,6 +4,7 @@ import unimet.saman_productions.employees.Animator;
 import unimet.saman_productions.employees.PlotTwistWriter;
 import unimet.saman_productions.employees.Screenwriter;
 import unimet.saman_productions.employees.SetDesigner;
+import unimet.saman_productions.employees.StudioEmployee;
 import unimet.saman_productions.employees.VoiceActor;
 
 public class DriveManager {
@@ -29,7 +30,7 @@ public class DriveManager {
     publishedDrive = new Drive();
   }
 
-  public Drive getDrive(Class<?> type) {
+  public Drive getDrive(Class<? extends StudioEmployee> type) {
     if (type == Screenwriter.class) {
       return scriptsDrive;
     } else if (type == SetDesigner.class) {
