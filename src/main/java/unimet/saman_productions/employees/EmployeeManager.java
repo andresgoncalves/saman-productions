@@ -34,34 +34,41 @@ public class EmployeeManager {
     director = new Director(studio);
     projectManager = new ProjectManager(studio);
   }
-  
-  public void updateEmployeeNumbers(int screewriters, int setDesigners, int animators, int voiceActors, int plotTwistWriters, int assemblers) {
-      
-      int totalEmployees = screewriters + setDesigners + animators + voiceActors + plotTwistWriters + assemblers;
-      Employee[] updatedEmployees = new Employee[totalEmployees];
-      int i = 0;
 
-      for (int j = 0; j < screewriters; j += 1, i += 1) {
-        updatedEmployees[i] = new Screenwriter(director.getStudio());
-      }
-      for (int j = 0; j < setDesigners; j += 1, i += 1) {
-        updatedEmployees[i] = new SetDesigner(director.getStudio());
-      }
-      for (int j = 0; j < animators; j += 1, i += 1) {
-        updatedEmployees[i] = new Animator(director.getStudio());
-      }
-      for (int j = 0; j < voiceActors; j += 1, i += 1) {
-        updatedEmployees[i] = new VoiceActor(director.getStudio());
-      }
-      for (int j = 0; j < plotTwistWriters; j += 1, i += 1) {
-        updatedEmployees[i] = new PlotTwistWriter(director.getStudio());
-      }
-      for (int j = 0; j < assemblers; j += 1, i += 1) {
-        updatedEmployees[i] = new Assembler(director.getStudio());
-      }
+  public void updateEmployeeNumbers(int screewriters, int setDesigners, int animators, int voiceActors,
+      int plotTwistWriters, int assemblers) {
 
-      employees = updatedEmployees;
+    int totalEmployees = screewriters + setDesigners + animators + voiceActors + plotTwistWriters + assemblers;
+    Employee[] updatedEmployees = new Employee[totalEmployees];
+    int i = 0;
+
+    for (int j = 0; j < screewriters; j += 1, i += 1) {
+      updatedEmployees[i] = new Screenwriter(director.getStudio());
     }
+    for (int j = 0; j < setDesigners; j += 1, i += 1) {
+      updatedEmployees[i] = new SetDesigner(director.getStudio());
+    }
+    for (int j = 0; j < animators; j += 1, i += 1) {
+      updatedEmployees[i] = new Animator(director.getStudio());
+    }
+    for (int j = 0; j < voiceActors; j += 1, i += 1) {
+      updatedEmployees[i] = new VoiceActor(director.getStudio());
+    }
+    for (int j = 0; j < plotTwistWriters; j += 1, i += 1) {
+      updatedEmployees[i] = new PlotTwistWriter(director.getStudio());
+    }
+    for (int j = 0; j < assemblers; j += 1, i += 1) {
+      updatedEmployees[i] = new Assembler(director.getStudio());
+    }
+
+    for (Employee employee : employees) {
+      employee.interrupt();
+    }
+    employees = updatedEmployees;
+    for (Employee employee : employees) {
+      employee.start();
+    }
+  }
 
   public void startAll() {
     director.start();
