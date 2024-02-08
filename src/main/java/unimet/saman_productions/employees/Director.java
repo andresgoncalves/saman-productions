@@ -71,6 +71,7 @@ public class Director extends Employee {
           notifyAndSleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION));
         }
         getStudio().payEmployees();
+        notifyFinalDay();
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

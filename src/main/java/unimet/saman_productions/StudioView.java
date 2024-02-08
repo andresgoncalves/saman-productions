@@ -37,7 +37,8 @@ public class StudioView {
         Integer countVoiceActor = driveManager.getDrive(VoiceActor.class).getCount();
         Integer countPlotTwistWriter = driveManager.getDrive(PlotTwistWriter.class).getCount();
         Integer counterDeadline = studio.getDeadlineCounter();
-        Integer countReviewChapters = studio.getEmployeeManager().getProjectManager().getReviewCount();
+        Integer countReviewChapters = driveManager.getStandardEpisodeDrive().getCount()
+                + driveManager.getPlotTwistEpisodeDrive().getCount();
 
         if ("SC".equals(studio.getName())) {
             mainFrame.setCapitulosStar(countScreenWriter.toString());
@@ -54,6 +55,7 @@ public class StudioView {
             mainFrame.setChaptersVACN(countVoiceActor.toString());
             mainFrame.setChaptersPTWCN(countPlotTwistWriter.toString());
             mainFrame.setDeadLineCN(counterDeadline.toString());
+            mainFrame.setReviewChaptersCN(countReviewChapters.toString());
         }
     }
 
@@ -109,22 +111,26 @@ public class StudioView {
     }
 
     public synchronized void actualizeFinances() {
-        Integer publishedChapters = studio.publishPlotTwistEpisodes() + studio.publishStandardEpisodes();
+        Integer publishedChapters = studio.getDriveManager().getPublishedDrive().getCount();
         Integer totalEarnings = studio.getTotalEarnings();
         Integer costos = studio.getTotalExpenses();
         Integer utilidades = studio.getTotalUtility();
+        Integer countReviewChapters = studio.getDriveManager().getStandardEpisodeDrive().getCount()
+                + studio.getDriveManager().getPlotTwistEpisodeDrive().getCount();
 
         if ("SC".equals(studio.getName())) {
             mainFrame.setPublishedChaptersSC(publishedChapters.toString());
             mainFrame.setIngresosSC(totalEarnings.toString());
             mainFrame.setCostosSC(costos.toString());
             mainFrame.setUtilidadesSC(utilidades.toString());
+            mainFrame.setReviewChaptersSC(countReviewChapters.toString());
 
         } else if ("CN".equals(studio.getName())) {
             mainFrame.setPublishedChaptersCN(publishedChapters.toString());
             mainFrame.setIngresosCN(totalEarnings.toString());
             mainFrame.setCostosCN(costos.toString());
             mainFrame.setUtilidadesCN(utilidades.toString());
+            mainFrame.setReviewChaptersCN(countReviewChapters.toString());
         }
     }
 
