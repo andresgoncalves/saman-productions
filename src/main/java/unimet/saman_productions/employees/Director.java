@@ -33,11 +33,10 @@ public class Director extends Employee {
               standardEpisodeCount * getStudio().getStandardProfit()
                   + plotTwistEpisodeCount * getStudio().getPlotTwistProfit());
           getStudio().resetDeadlineCounter();
-
+          
           System.out.println("Deadline encontrada. Se publicaron %d episodios estándar y %d plot twist."
               .formatted(standardEpisodeCount, plotTwistEpisodeCount));
-
-          Thread.sleep(daysToMilliseconds(1));
+            notifyAndSleep(daysToMilliseconds(1), "publicando");
         } else {
           status = STATUS_IDLE;
           boolean isWatchingAnime = false;
@@ -45,7 +44,7 @@ public class Director extends Employee {
           ProjectManager projectManager = getStudio().getEmployeeManager().getProjectManager();
 
           status = STATUS_SUPERVISING;
-          Thread.sleep(daysToMilliseconds(randomCheckDelay));
+          notifyAndSleep(daysToMilliseconds(randomCheckDelay), "supervisando");
           if (projectManager.getStatus() == ProjectManager.STATUS_WATCHING_ANIME) {
             isWatchingAnime = true;
           }
@@ -66,7 +65,7 @@ public class Director extends Employee {
           }
 
           status = STATUS_IDLE;
-          Thread.sleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION));
+          notifyAndSleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION), "inactivo");
         }
         getStudio().payEmployees();
       } catch (InterruptedException e) {
@@ -80,13 +79,17 @@ public class Director extends Employee {
   }
 
   public void notifyAndSleep(long time, String type) throws InterruptedException {
-    super.getStudio().getStudioView().actualizePMStatus();
+    super.getStudio().getStudioView().actualizeDirectorStatus(super.getStudio());
     switch (type) {
-      case "anime" -> Thread.sleep(time);
-      case "review" -> Thread.sleep(time);
-      case "deadline" -> Thread.sleep(time);
+      case "publicando" -> Thread.sleep(time);
+      case "supervisando" -> Thread.sleep(time);
+      case "inactivo" -> Thread.sleep(time);
       default -> {
       }
     }
+  }
+  
+  public void notifyFinalDay(){
+      super.getStudio().getStudioView().actualizeInfoFinalDay(super.getStudio());
   }
 }

@@ -36,6 +36,8 @@ public class StudioView {
         Integer countVoiceActor = driveManager.getDrive(VoiceActor.class).getCount();
         Integer countPlotTwistWriter = driveManager.getDrive(PlotTwistWriter.class).getCount();
         Integer counterDeadline = studio.getDeadlineCounter();
+        Integer countReviewChapters = studio.getEmployeeManager().getProjectManager().getReviewCount();
+        
         
         if("SC".equals(studio.getName())){
             mainFrame.setCapitulosStar(countScreenWriter.toString());
@@ -44,6 +46,7 @@ public class StudioView {
             mainFrame.setDoblajeChapters(countVoiceActor.toString());
             mainFrame.setPlotTwistChapters(countPlotTwistWriter.toString());
             mainFrame.setDeadLineSC(counterDeadline.toString());
+            mainFrame.setReviewChaptersSC(countReviewChapters.toString());
         } else if ("CN".equals(studio.getName())){
             mainFrame.setScreenWriterCN(countScreenWriter.toString());
             mainFrame.setSceneChaptersCN(countScene.toString());
@@ -54,8 +57,10 @@ public class StudioView {
         }
     }
     
-    public synchronized void actualizePMStatus(){
+    public synchronized void actualizePMStatus(Studio studio){
         ProjectManager projectManager = studio.getEmployeeManager().getProjectManager();
+        Integer countFaults = projectManager.getTotalFaults();
+        Integer salaryDiscount = projectManager.getTotalSalaryDiscount();
         if("SC".equals(studio.getName())){
             switch (projectManager.getStatus()) {
                 case ProjectManager.STATUS_WATCHING_ANIME -> mainFrame.setPmStatusSC("Viendo Anime");
@@ -64,8 +69,8 @@ public class StudioView {
                 default -> {
                 }
             }
-            Integer countFaults = projectManager.getTotalFaults();
             mainFrame.setFaultsPMSC(countFaults.toString());
+            mainFrame.setDiscountMoneyPMSC(salaryDiscount.toString());
         } else if ("CN".equals(studio.getName())){
             switch (projectManager.getStatus()) {
                 case ProjectManager.STATUS_WATCHING_ANIME -> mainFrame.setPMStatusCN("Viendo Anime");
@@ -74,25 +79,28 @@ public class StudioView {
                 default -> {
                 }
             }
-            Integer countFaults = projectManager.getTotalFaults();
             mainFrame.setFaultsPMCN(countFaults.toString());
+            mainFrame.setDiscountMoneyPMCN(salaryDiscount.toString());
         }
+        
+        
         
     }
     
-    public synchronized void actualizeDirectorStatus(){
+    public synchronized void actualizeDirectorStatus(Studio studio){
         Director director = studio.getEmployeeManager().getDirector();
         if("SC".equals(studio.getName())){
             switch (director.getStatus()) {
-                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusSC("IDLE");
+                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusSC("Inactivo");
                 case Director.STATUS_PUBLISHING -> mainFrame.setDirectorStatusSC("Publicando");
-                case Director.STATUS_SUPERVISING -> mainFrame.setDirectorStatusSC("");
+                case Director.STATUS_SUPERVISING -> mainFrame.setDirectorStatusSC("Supervisando");
                 default -> {
                 }
             }
+            
         } else if ("CN".equals(studio.getName())){
             switch (director.getStatus()) {
-                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusCN("IDLE");
+                case Director.STATUS_IDLE -> mainFrame.setDirectorStatusCN("Inactivo");
                 case Director.STATUS_PUBLISHING -> mainFrame.setDirectorStatusCN("Publicando");
                 case Director.STATUS_SUPERVISING -> mainFrame.setDirectorStatusCN("Supervisando");
                 default -> {
@@ -100,6 +108,26 @@ public class StudioView {
             }
         }
         
+    }
+    
+    public synchronized void actualizeInfoFinalDay(Studio studio){
+        Integer publishedChapters = studio.publishPlotTwistEpisodes() + studio.publishStandardEpisodes();
+        Integer totalEarnings = studio.getTotalEarnings();
+        Integer costos = studio.getTotalExpenses();
+        Integer utilidades = studio.getTotalUtility();
+        
+        if("SC".equals(studio.getName())){
+           mainFrame.setPublishedChaptersSC(publishedChapters.toString());
+           mainFrame.setIngresosSC(totalEarnings.toString());
+           mainFrame.setCostosSC(costos.toString());
+           mainFrame.setUtilidadesSC(utilidades.toString());
+           
+        } else if ("CN".equals(studio.getName())){
+           mainFrame.setPublishedChaptersCN(publishedChapters.toString());
+           mainFrame.setIngresosCN(totalEarnings.toString());
+           mainFrame.setCostosCN(costos.toString());
+           mainFrame.setUtilidadesCN(utilidades.toString());
+        }
     }
         
 }

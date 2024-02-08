@@ -93,7 +93,7 @@ public class ProjectManager extends Employee {
   };
 
   public void notifyAndSleep(long time, String type) throws InterruptedException {
-    super.getStudio().getStudioView().actualizePMStatus();
+    super.getStudio().getStudioView().actualizePMStatus(super.getStudio());
     switch (type) {
       case "anime" -> Thread.sleep(time);
       case "review" -> Thread.sleep(time);

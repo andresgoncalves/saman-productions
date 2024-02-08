@@ -85,8 +85,6 @@ public class MainFrame extends javax.swing.JFrame {
         startSimulation = new javax.swing.JButton();
         CapitulosDrive = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        screenwriterDriveSizeCN = new javax.swing.JTextField();
-        setDesignerDriveSizeCN = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -96,33 +94,25 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        animatorDriveSizeCN = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        voiceActorDriveSizeCN = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        plotTwistDriveSizeCN = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jTextField31 = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
-        jTextField33 = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
         chaptersScreenWriterCN = new javax.swing.JLabel();
         chapterVoiceCN = new javax.swing.JLabel();
         chaptersPTWriterCN = new javax.swing.JLabel();
@@ -132,25 +122,30 @@ public class MainFrame extends javax.swing.JFrame {
         pmStatusCN = new javax.swing.JLabel();
         faultsPMCN = new javax.swing.JLabel();
         directorCN = new javax.swing.JLabel();
+        discountMoneyPMCN = new javax.swing.JLabel();
+        screenwriterDriveSizeCN = new javax.swing.JLabel();
+        maxSceneCN = new javax.swing.JLabel();
+        maxDoblajeCN = new javax.swing.JLabel();
+        maxPTCN = new javax.swing.JLabel();
+        maxAnimatorCN = new javax.swing.JLabel();
+        costosCN = new javax.swing.JLabel();
+        utilidadesCN = new javax.swing.JLabel();
+        ingresosCN = new javax.swing.JLabel();
+        publishedChaptersCN = new javax.swing.JLabel();
         StarChannel = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        maxStarScreenWriter = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -159,19 +154,13 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
-        jTextField26 = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
         capitulosStar = new javax.swing.JLabel();
         SceneChapters = new javax.swing.JLabel();
         DoblajeChapters = new javax.swing.JLabel();
@@ -181,6 +170,17 @@ public class MainFrame extends javax.swing.JFrame {
         pmStatusSC = new javax.swing.JLabel();
         faultsPMStar = new javax.swing.JLabel();
         directorStar = new javax.swing.JLabel();
+        moneyDiscountPMSC = new javax.swing.JLabel();
+        ingresosSC = new javax.swing.JLabel();
+        maxStarScreenWriter = new javax.swing.JLabel();
+        maxSceneStar = new javax.swing.JLabel();
+        maxDoblajeStar = new javax.swing.JLabel();
+        maxAnimatorStar = new javax.swing.JLabel();
+        maxPlotTwistStar = new javax.swing.JLabel();
+        reviewChaptersSC = new javax.swing.JLabel();
+        publishedChaptersSC = new javax.swing.JLabel();
+        costosSC = new javax.swing.JLabel();
+        utilidadesSC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 51));
@@ -336,12 +336,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5.setText("CARTOON NETWORK");
         CapitulosDrive.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
-        screenwriterDriveSizeCN.setText(String.valueOf(Screenwriter.DRIVE_SIZE));
-        CapitulosDrive.add(screenwriterDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 90, -1));
-
-        setDesignerDriveSizeCN.setText(String.valueOf(SetDesigner.DRIVE_SIZE));
-        CapitulosDrive.add(setDesignerDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, -1));
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 102));
         jLabel4.setText("DRIVE DISEÑADOR DE ESCENARIOS");
@@ -381,14 +375,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13.setText("Capacidad máxima de capítulos:");
         CapitulosDrive.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 200, -1));
 
-        animatorDriveSizeCN.setText(String.valueOf(Animator.DRIVE_SIZE));
-        animatorDriveSizeCN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                animatorDriveSizeCNActionPerformed(evt);
-            }
-        });
-        CapitulosDrive.add(animatorDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 90, -1));
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 102));
         jLabel14.setText("DRIVE GUIONISTA");
@@ -402,9 +388,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel16.setText("Capacidad máxima de capítulos:");
         CapitulosDrive.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 200, -1));
 
-        voiceActorDriveSizeCN.setText(String.valueOf(VoiceActor.DRIVE_SIZE));
-        CapitulosDrive.add(voiceActorDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 90, -1));
-
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 102));
         jLabel17.setText("DRIVE PLOT TWIST");
@@ -417,14 +400,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Capacidad máxima de capítulos:");
         CapitulosDrive.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 200, -1));
-
-        plotTwistDriveSizeCN.setText(String.valueOf(PlotTwistWriter.DRIVE_SIZE));
-        plotTwistDriveSizeCN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plotTwistDriveSizeCNActionPerformed(evt);
-            }
-        });
-        CapitulosDrive.add(plotTwistDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 90, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(0, 0, 0));
@@ -441,7 +416,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel55.setForeground(new java.awt.Color(0, 0, 0));
         jLabel55.setText("Capítulos publicados:");
         CapitulosDrive.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
-        CapitulosDrive.add(jTextField32, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 70, -1));
 
         jLabel56.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel56.setForeground(new java.awt.Color(0, 0, 102));
@@ -453,13 +427,12 @@ public class MainFrame extends javax.swing.JFrame {
         CapitulosDrive.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel58.setText("Cantidad de faltas");
+        jLabel58.setText("Cantidad de faltas:");
         CapitulosDrive.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("Dinero descontado");
         CapitulosDrive.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
-        CapitulosDrive.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 140, -1));
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setText("Qué está haciendo:");
@@ -475,24 +448,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel62.setText("Ingresos:");
         CapitulosDrive.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, -1, -1));
 
-        jTextField33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField33ActionPerformed(evt);
-            }
-        });
-        CapitulosDrive.add(jTextField33, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, 80, -1));
-
         jLabel63.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Costos:");
         CapitulosDrive.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, -1, -1));
-        CapitulosDrive.add(jTextField34, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, 80, -1));
 
         jLabel64.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel64.setForeground(new java.awt.Color(0, 0, 0));
         jLabel64.setText("Utilidades:");
         CapitulosDrive.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 570, -1, -1));
-        CapitulosDrive.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, 80, -1));
         CapitulosDrive.add(chaptersScreenWriterCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
         CapitulosDrive.add(chapterVoiceCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
         CapitulosDrive.add(chaptersPTWriterCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
@@ -502,6 +466,26 @@ public class MainFrame extends javax.swing.JFrame {
         CapitulosDrive.add(pmStatusCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
         CapitulosDrive.add(faultsPMCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, -1, -1));
         CapitulosDrive.add(directorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, -1, -1));
+        CapitulosDrive.add(discountMoneyPMCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, -1, -1));
+
+        screenwriterDriveSizeCN.setText(String.valueOf(Screenwriter.DRIVE_SIZE));
+        CapitulosDrive.add(screenwriterDriveSizeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+
+        maxSceneCN.setText(String.valueOf(SetDesigner.DRIVE_SIZE));
+        CapitulosDrive.add(maxSceneCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 80, -1));
+
+        maxDoblajeCN.setText(String.valueOf(VoiceActor.DRIVE_SIZE));
+        CapitulosDrive.add(maxDoblajeCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
+
+        maxPTCN.setText(String.valueOf(PlotTwistWriter.DRIVE_SIZE));
+        CapitulosDrive.add(maxPTCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, -1, -1));
+
+        maxAnimatorCN.setText(String.valueOf(Animator.DRIVE_SIZE));
+        CapitulosDrive.add(maxAnimatorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
+        CapitulosDrive.add(costosCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, -1, -1));
+        CapitulosDrive.add(utilidadesCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 570, 50, 20));
+        CapitulosDrive.add(ingresosCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, 30, 10));
+        CapitulosDrive.add(publishedChaptersCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 30, 10));
 
         jTabbedPane1.addTab("Cartoon Network", CapitulosDrive);
 
@@ -526,14 +510,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel23.setText("Cantidad máxima de capítulos:");
         StarChannel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        maxStarScreenWriter.setText(String.valueOf(Screenwriter.DRIVE_SIZE));
-        maxStarScreenWriter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maxStarScreenWriterActionPerformed(evt);
-            }
-        });
-        StarChannel.add(maxStarScreenWriter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 80, -1));
-
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 102));
         jLabel24.setText("DRIVE DISEÑADOR DE ESCENARIOS ");
@@ -546,9 +522,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Cantidad máxima de capítulos:");
         StarChannel.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
-
-        jTextField13.setText(String.valueOf(SetDesigner.DRIVE_SIZE));
-        StarChannel.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 80, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 102));
@@ -563,9 +536,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel29.setText("Cantidad máxima de capítulos:");
         StarChannel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        jTextField15.setText(String.valueOf(Animator.DRIVE_SIZE));
-        StarChannel.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 80, -1));
-
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 102));
         jLabel30.setText("DRIVE ACTORES DOBLAJE");
@@ -578,12 +548,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Cantidad máxima de capítulos:");
         StarChannel.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
-
-        jTextField17.setText(String.valueOf(VoiceActor.DRIVE_SIZE));
-        StarChannel.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 80, -1));
-
-        jTextField19.setText(String.valueOf(PlotTwistWriter.DRIVE_SIZE));
-        StarChannel.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 80, -1));
 
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Cantidad máxima de capítulos:");
@@ -619,7 +583,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setText("Dinero descontado");
         StarChannel.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
-        StarChannel.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 140, -1));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 102));
@@ -634,8 +597,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setText("Capítulos publicados:");
         StarChannel.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
-        StarChannel.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 70, -1));
-        StarChannel.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 80, -1));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
@@ -647,24 +608,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel45.setText("Ingresos:");
         StarChannel.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, -1, -1));
 
-        jTextField28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField28ActionPerformed(evt);
-            }
-        });
-        StarChannel.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, 80, -1));
-
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText("Costos:");
         StarChannel.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, -1, -1));
-        StarChannel.add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, 80, -1));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Utilidades:");
         StarChannel.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 570, -1, -1));
-        StarChannel.add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, 80, -1));
 
         capitulosStar.setForeground(new java.awt.Color(0, 0, 0));
         StarChannel.add(capitulosStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 70, -1));
@@ -676,6 +628,27 @@ public class MainFrame extends javax.swing.JFrame {
         StarChannel.add(pmStatusSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
         StarChannel.add(faultsPMStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, -1, -1));
         StarChannel.add(directorStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, -1, -1));
+        StarChannel.add(moneyDiscountPMSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 70, -1));
+        StarChannel.add(ingresosSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, 30, 10));
+
+        maxStarScreenWriter.setText(String.valueOf(Screenwriter.DRIVE_SIZE));
+        StarChannel.add(maxStarScreenWriter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 40, 20));
+
+        maxSceneStar.setText(String.valueOf(SetDesigner.DRIVE_SIZE));
+        StarChannel.add(maxSceneStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+
+        maxDoblajeStar.setText(String.valueOf(VoiceActor.DRIVE_SIZE));
+        StarChannel.add(maxDoblajeStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, -1, -1));
+
+        maxAnimatorStar.setText(String.valueOf(Animator.DRIVE_SIZE));
+        StarChannel.add(maxAnimatorStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
+
+        maxPlotTwistStar.setText(String.valueOf(PlotTwistWriter.DRIVE_SIZE));
+        StarChannel.add(maxPlotTwistStar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, -1));
+        StarChannel.add(reviewChaptersSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 30, 10));
+        StarChannel.add(publishedChaptersSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 30, 10));
+        StarChannel.add(costosSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, -1, -1));
+        StarChannel.add(utilidadesSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 570, 50, 20));
 
         jTabbedPane1.addTab("Star Channel", StarChannel);
 
@@ -692,10 +665,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void animatorDriveSizeCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animatorDriveSizeCNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_animatorDriveSizeCNActionPerformed
 
     private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
         starchannel.stop();
@@ -720,10 +689,6 @@ public class MainFrame extends javax.swing.JFrame {
         StudioView studioViewCartoon = new StudioView(cartoonNetwork, this);
         cartoonNetwork.start(employeeManagerCartoon);
     }//GEN-LAST:event_startSimulationActionPerformed
-
-    private void maxStarScreenWriterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxStarScreenWriterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maxStarScreenWriterActionPerformed
 
     private void plotTwistDriveSizeCNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_plotTwistDriveSizeCNActionPerformed
         // TODO add your handling code here:
@@ -808,6 +773,16 @@ public class MainFrame extends javax.swing.JFrame {
     public void setPMStatusCN(String texto) {
         pmStatusCN.setText(texto);
     }
+    public void setReviewChaptersSC(String texto) {
+        reviewChaptersSC.setText(texto);
+    }
+    
+    public void setPublishedChaptersSC(String texto) {
+        publishedChaptersSC.setText(texto);
+    }
+    public void setPublishedChaptersCN(String texto) {
+        publishedChaptersCN.setText(texto);
+    }
     
     public void setDirectorStatusCN(String texto) {
         directorStar.setText(texto);
@@ -815,6 +790,31 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void setDirectorStatusSC(String texto) {
         directorCN.setText(texto);
+    }
+    public void setDiscountMoneyPMSC(String texto) {
+        moneyDiscountPMSC.setText(texto);
+    }
+    
+    public void setDiscountMoneyPMCN(String texto) {
+        discountMoneyPMCN.setText(texto);
+    }
+    public void setIngresosSC(String texto) {
+        ingresosSC.setText(texto);
+    }
+    public void setCostosSC(String texto) {
+        costosSC.setText(texto);
+    }
+    public void setUtilidadesSC(String texto) {
+        utilidadesSC.setText(texto);
+    }
+    public void setIngresosCN(String texto) {
+        ingresosCN.setText(texto);
+    }
+    public void setCostosCN(String texto) {
+        costosCN.setText(texto);
+    }
+    public void setUtilidadesCN(String texto) {
+        utilidadesCN.setText(texto);
     }
     
     private void CargarTxtActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CargarTxtActionPerformed
@@ -970,24 +970,28 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel StarChannel;
     private javax.swing.JButton actualizeData;
     private javax.swing.JTextField animadores;
-    private javax.swing.JTextField animatorDriveSizeCN;
     private javax.swing.JLabel capitulosStar;
     private javax.swing.JLabel chapterVoiceCN;
     private javax.swing.JLabel chaptersAnimatorCN;
     private javax.swing.JLabel chaptersPTWriterCN;
     private javax.swing.JLabel chaptersSceneCN;
     private javax.swing.JLabel chaptersScreenWriterCN;
+    private javax.swing.JLabel costosCN;
+    private javax.swing.JLabel costosSC;
     private javax.swing.JLabel deadLineCN;
     private javax.swing.JLabel deadLineSC;
     private javax.swing.JTextField deadlineTxt;
     private javax.swing.JTextField designers;
     private javax.swing.JLabel directorCN;
     private javax.swing.JLabel directorStar;
+    private javax.swing.JLabel discountMoneyPMCN;
     private javax.swing.JTextField doblaje;
     private javax.swing.JTextField ensambladores;
     private javax.swing.JLabel faultsPMCN;
     private javax.swing.JLabel faultsPMStar;
     private javax.swing.JTextField guionistas;
+    private javax.swing.JLabel ingresosCN;
+    private javax.swing.JLabel ingresosSC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1053,33 +1057,29 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField maxStarScreenWriter;
+    private javax.swing.JLabel maxAnimatorCN;
+    private javax.swing.JLabel maxAnimatorStar;
+    private javax.swing.JLabel maxDoblajeCN;
+    private javax.swing.JLabel maxDoblajeStar;
+    private javax.swing.JLabel maxPTCN;
+    private javax.swing.JLabel maxPlotTwistStar;
+    private javax.swing.JLabel maxSceneCN;
+    private javax.swing.JLabel maxSceneStar;
+    private javax.swing.JLabel maxStarScreenWriter;
+    private javax.swing.JLabel moneyDiscountPMSC;
     private javax.swing.JTextField plotTwist;
     private javax.swing.JLabel plotTwistChapters;
-    private javax.swing.JTextField plotTwistDriveSizeCN;
     private javax.swing.JLabel pmStatusCN;
     private javax.swing.JLabel pmStatusSC;
-    private javax.swing.JTextField screenwriterDriveSizeCN;
+    private javax.swing.JLabel publishedChaptersCN;
+    private javax.swing.JLabel publishedChaptersSC;
+    private javax.swing.JLabel reviewChaptersSC;
+    private javax.swing.JLabel screenwriterDriveSizeCN;
     private javax.swing.JTextField seconds;
-    private javax.swing.JTextField setDesignerDriveSizeCN;
     private javax.swing.JButton startSimulation;
     private javax.swing.JButton stopSimulation;
-    private javax.swing.JTextField voiceActorDriveSizeCN;
+    private javax.swing.JLabel utilidadesCN;
+    private javax.swing.JLabel utilidadesSC;
     // End of variables declaration//GEN-END:variables
 }
