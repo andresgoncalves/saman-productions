@@ -75,15 +75,16 @@ public class ProjectManager extends Employee {
       try {
         if (reviewCount < getReviewCount()) {
           status = STATUS_WATCHING_ANIME;
-          notifyAndSleep(getAnimeDelay(), "anime");
+          notifyAndSleep(getAnimeDelay());
           status = STATUS_REVIEWING_WORK;
-          notifyAndSleep(getReviewDelay(), "review");
+          notifyAndSleep(getReviewDelay());
           reviewCount += 1;
         } else {
+          status = STATUS_CHECKING_DEADLINE;
           if (getStudio().getDeadlineCounter() > 0) {
             getStudio().decreaseDeadlineCounter();
           }
-          notifyAndSleep(getDeadlineDelay(), "deadline");
+          notifyAndSleep(getDeadlineDelay());
           reviewCount = 0;
         }
       } catch (InterruptedException e) {
@@ -92,14 +93,8 @@ public class ProjectManager extends Employee {
     }
   };
 
-  public void notifyAndSleep(long time, String type) throws InterruptedException {
-    super.getStudio().getStudioView().actualizePMStatus(super.getStudio());
-    switch (type) {
-      case "anime" -> Thread.sleep(time);
-      case "review" -> Thread.sleep(time);
-      case "deadline" -> Thread.sleep(time);
-      default -> {
-      }
-    }
+  public void notifyAndSleep(long time) throws InterruptedException {
+    getStudio().getStudioView().actualizePMStatus();
+    Thread.sleep(time);
   }
 }

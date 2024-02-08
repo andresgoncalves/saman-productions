@@ -25,7 +25,7 @@ public class Assembler extends Employee {
   public void run() {
     while (!isInterrupted()) {
       try {
-        Thread.sleep(getDelay());
+        notifyAndSleep(getDelay());
         if (plotTwistGapCount == getStudio().getPlotTwistGap()) {
           if (getStudio().assemblePlotTwistEpisode()) {
             System.out.println("PlotTwist Creado");
@@ -41,5 +41,10 @@ public class Assembler extends Employee {
         e.printStackTrace();
       }
     }
+  }
+
+  public void notifyAndSleep(long time) throws InterruptedException {
+    getStudio().getStudioView().actualizeFinances();
+    Thread.sleep(time);
   }
 }

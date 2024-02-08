@@ -147,6 +147,7 @@ public abstract class Studio {
     int count = driveManager.getStandardEpisodeDrive().getCount();
     driveManager.getStandardEpisodeDrive().remove(count);
     driveManager.getPublishedDrive().upload(count);
+    registerEarning(count * getStandardProfit());
     return count;
   }
 
@@ -154,6 +155,7 @@ public abstract class Studio {
     int count = driveManager.getPlotTwistEpisodeDrive().getCount();
     driveManager.getPlotTwistEpisodeDrive().remove(count);
     driveManager.getPublishedDrive().upload(count);
+    registerEarning(count * getPlotTwistProfit());
     return count;
   }
 
@@ -164,7 +166,7 @@ public abstract class Studio {
     registerExpense(employeeManager.getDirector().getSalary());
     registerExpense(employeeManager.getProjectManager().getSalary());
     employeeManager.getProjectManager().clearFaults();
-    System.out.println(getTotalExpenses());
+    System.out.println("Utilidad: " + getTotalUtility() + " " + getName());
   }
 
   public void registerEarning(int amount) {

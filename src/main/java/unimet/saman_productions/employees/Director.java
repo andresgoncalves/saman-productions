@@ -33,39 +33,42 @@ public class Director extends Employee {
               standardEpisodeCount * getStudio().getStandardProfit()
                   + plotTwistEpisodeCount * getStudio().getPlotTwistProfit());
           getStudio().resetDeadlineCounter();
-          
+
           System.out.println("Deadline encontrada. Se publicaron %d episodios estándar y %d plot twist."
               .formatted(standardEpisodeCount, plotTwistEpisodeCount));
-            notifyAndSleep(daysToMilliseconds(1), "publicando");
+
+          notifyFinalDay();
+          notifyAndSleep(daysToMilliseconds(1));
         } else {
           status = STATUS_IDLE;
           boolean isWatchingAnime = false;
           double randomCheckDelay = Math.random() * (1 - CHECK_DURATION);
           ProjectManager projectManager = getStudio().getEmployeeManager().getProjectManager();
 
+          notifyAndSleep(daysToMilliseconds(randomCheckDelay));
           status = STATUS_SUPERVISING;
-          notifyAndSleep(daysToMilliseconds(randomCheckDelay), "supervisando");
           if (projectManager.getStatus() == ProjectManager.STATUS_WATCHING_ANIME) {
             isWatchingAnime = true;
           }
 
-          Thread.sleep(daysToMilliseconds(CHECK_DURATION / 2));
+          notifyAndSleep(daysToMilliseconds(CHECK_DURATION / 2));
           if (projectManager.getStatus() == ProjectManager.STATUS_WATCHING_ANIME) {
             isWatchingAnime = true;
           }
 
-          Thread.sleep(daysToMilliseconds(CHECK_DURATION / 2));
+          notifyAndSleep(daysToMilliseconds(CHECK_DURATION / 2));
           if (projectManager.getStatus() == ProjectManager.STATUS_WATCHING_ANIME) {
             isWatchingAnime = true;
           }
 
           if (isWatchingAnime) {
-            System.out.println("Project Manager observado viendo Anime. Penalización aplicada.");
+            System.out
+                .println("Project Manager observado viendo Anime. Penalización aplicada. " + getStudio().getName());
             projectManager.registerFault();
           }
 
           status = STATUS_IDLE;
-          notifyAndSleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION), "inactivo");
+          notifyAndSleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION));
         }
         getStudio().payEmployees();
       } catch (InterruptedException e) {
@@ -78,18 +81,12 @@ public class Director extends Employee {
     return status;
   }
 
-  public void notifyAndSleep(long time, String type) throws InterruptedException {
-    super.getStudio().getStudioView().actualizeDirectorStatus(super.getStudio());
-    switch (type) {
-      case "publicando" -> Thread.sleep(time);
-      case "supervisando" -> Thread.sleep(time);
-      case "inactivo" -> Thread.sleep(time);
-      default -> {
-      }
-    }
+  public void notifyAndSleep(long time) throws InterruptedException {
+    getStudio().getStudioView().actualizeDirectorStatus();
+    Thread.sleep(time);
   }
-  
-  public void notifyFinalDay(){
-      super.getStudio().getStudioView().actualizeInfoFinalDay(super.getStudio());
+
+  public void notifyFinalDay() {
+    getStudio().getStudioView().actualizeFinances();
   }
 }
