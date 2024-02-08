@@ -68,6 +68,7 @@ public class Director extends Employee {
           status = STATUS_IDLE;
           Thread.sleep(daysToMilliseconds(1 - randomCheckDelay + CHECK_DURATION));
         }
+        getStudio().payEmployees();
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -77,14 +78,15 @@ public class Director extends Employee {
   public int getStatus() {
     return status;
   }
-   public void notifyAndSleep(long time, String type) throws InterruptedException {
+
+  public void notifyAndSleep(long time, String type) throws InterruptedException {
     super.getStudio().getStudioView().actualizePMStatus();
-      switch (type) {
-          case "anime" -> Thread.sleep(time);
-          case "review" -> Thread.sleep(time);
-          case "deadline" -> Thread.sleep(time);
-          default -> {
-          }
+    switch (type) {
+      case "anime" -> Thread.sleep(time);
+      case "review" -> Thread.sleep(time);
+      case "deadline" -> Thread.sleep(time);
+      default -> {
       }
-}
+    }
+  }
 }

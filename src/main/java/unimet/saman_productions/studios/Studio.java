@@ -3,12 +3,12 @@ package unimet.saman_productions.studios;
 import unimet.saman_productions.StudioView;
 import unimet.saman_productions.drives.DriveManager;
 import unimet.saman_productions.employees.Animator;
+import unimet.saman_productions.employees.Employee;
 import unimet.saman_productions.employees.EmployeeManager;
 import unimet.saman_productions.employees.PlotTwistWriter;
 import unimet.saman_productions.employees.Screenwriter;
 import unimet.saman_productions.employees.SetDesigner;
 import unimet.saman_productions.employees.VoiceActor;
-
 
 public abstract class Studio {
   private int totalEarnings = 0;
@@ -47,7 +47,7 @@ public abstract class Studio {
       }
     }.start();
   }
-  
+
   public abstract int getScripts();
 
   public abstract int getScenes();
@@ -63,23 +63,23 @@ public abstract class Studio {
   public abstract int getPlotTwistAmount();
 
   public abstract int getPlotTwistProfit();
-  
-  public int getSecondsDay(){
-      return secondsDay;
+
+  public int getSecondsDay() {
+    return secondsDay;
   }
-  
+
   public void setStudioView(StudioView studioView) {
-        this.studioView = studioView;
+    this.studioView = studioView;
   }
-  
-  public String getName(){
-      return name;
+
+  public String getName() {
+    return name;
   }
-  
+
   public StudioView getStudioView() {
-      return studioView;
+    return studioView;
   }
-  
+
   public DriveManager getDriveManager() {
     return driveManager;
   }
@@ -89,59 +89,59 @@ public abstract class Studio {
   }
 
   public void start(EmployeeManager employeeManager) {
-      this.employeeManager = employeeManager;
-      employeeManager.startAll();
-//    employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
-   
+    this.employeeManager = employeeManager;
+    employeeManager.startAll();
+    // employeeManager = new EmployeeManager(this, 1, 1, 1, 1, 1, 1);
+
   }
 
   public void stop() {
     employeeManager.stopAll();
   }
-  
+
   Object assemblerMutex = new Object();
 
   public boolean assembleStandardEpisode() {
-    synchronized(assemblerMutex) {
-        if (getDriveManager().getDrive(Screenwriter.class).getCount() >= getScripts()
-            && getDriveManager().getDrive(SetDesigner.class).getCount() >= getScenes()
-            && getDriveManager().getDrive(Animator.class).getCount() >= getAnimations()
-            && getDriveManager().getDrive(VoiceActor.class).getCount() >= getDubs()) {
+    synchronized (assemblerMutex) {
+      if (getDriveManager().getDrive(Screenwriter.class).getCount() >= getScripts()
+          && getDriveManager().getDrive(SetDesigner.class).getCount() >= getScenes()
+          && getDriveManager().getDrive(Animator.class).getCount() >= getAnimations()
+          && getDriveManager().getDrive(VoiceActor.class).getCount() >= getDubs()) {
 
-          getDriveManager().getDrive(Screenwriter.class).remove(getScripts());
-          getDriveManager().getDrive(SetDesigner.class).remove(getScenes());
-          getDriveManager().getDrive(Animator.class).remove(getAnimations());
-          getDriveManager().getDrive(VoiceActor.class).remove(getDubs());
+        getDriveManager().getDrive(Screenwriter.class).remove(getScripts());
+        getDriveManager().getDrive(SetDesigner.class).remove(getScenes());
+        getDriveManager().getDrive(Animator.class).remove(getAnimations());
+        getDriveManager().getDrive(VoiceActor.class).remove(getDubs());
 
-          driveManager.getStandardEpisodeDrive().upload();
+        driveManager.getStandardEpisodeDrive().upload();
 
-          return true;
-        }
+        return true;
+      }
 
-        return false;
+      return false;
     }
   }
 
   public boolean assemblePlotTwistEpisode() {
-    synchronized(assemblerMutex) {
-        if (driveManager.getDrive(Screenwriter.class).getCount() >= getScripts()
-            && driveManager.getDrive(SetDesigner.class).getCount() >= getScenes()
-            && driveManager.getDrive(Animator.class).getCount() >= getAnimations()
-            && driveManager.getDrive(VoiceActor.class).getCount() >= getDubs()
-            && driveManager.getDrive(PlotTwistWriter.class).getCount() >= getPlotTwistAmount()) {
+    synchronized (assemblerMutex) {
+      if (driveManager.getDrive(Screenwriter.class).getCount() >= getScripts()
+          && driveManager.getDrive(SetDesigner.class).getCount() >= getScenes()
+          && driveManager.getDrive(Animator.class).getCount() >= getAnimations()
+          && driveManager.getDrive(VoiceActor.class).getCount() >= getDubs()
+          && driveManager.getDrive(PlotTwistWriter.class).getCount() >= getPlotTwistAmount()) {
 
-          driveManager.getDrive(Screenwriter.class).remove(getScripts());
-          driveManager.getDrive(SetDesigner.class).remove(getScenes());
-          driveManager.getDrive(Animator.class).remove(getAnimations());
-          driveManager.getDrive(VoiceActor.class).remove(getDubs());
-          driveManager.getDrive(PlotTwistWriter.class).remove(getPlotTwistAmount());
+        driveManager.getDrive(Screenwriter.class).remove(getScripts());
+        driveManager.getDrive(SetDesigner.class).remove(getScenes());
+        driveManager.getDrive(Animator.class).remove(getAnimations());
+        driveManager.getDrive(VoiceActor.class).remove(getDubs());
+        driveManager.getDrive(PlotTwistWriter.class).remove(getPlotTwistAmount());
 
-          driveManager.getPlotTwistEpisodeDrive().upload();
+        driveManager.getPlotTwistEpisodeDrive().upload();
 
-          return true;
-        }
+        return true;
+      }
 
-        return false;
+      return false;
     }
   }
 
@@ -159,12 +159,22 @@ public abstract class Studio {
     return count;
   }
 
+  public void payEmployees() {
+    for (Employee employee : employeeManager.getEmployees()) {
+      registerExpense(employee.getSalary());
+    }
+    registerExpense(employeeManager.getDirector().getSalary());
+    registerExpense(employeeManager.getProjectManager().getSalary());
+    employeeManager.getProjectManager().clearFaults();
+    System.out.println(getTotalExpenses());
+  }
+
   public void registerEarning(int amount) {
     totalEarnings += amount;
   }
 
   public void registerExpense(int amount) {
-    totalExpenses -= amount;
+    totalExpenses += amount;
   }
 
   public void decreaseDeadlineCounter() {

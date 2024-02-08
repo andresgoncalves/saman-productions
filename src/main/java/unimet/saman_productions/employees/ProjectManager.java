@@ -8,6 +8,7 @@ public class ProjectManager extends Employee {
   public static final double DEADLINE_DELAY = (double) 8 / 24;
   public static final int REVIEW_COUNT = 16;
   public static final int SALARY = 40;
+  public static final int FAULT_DISCOUNT = 100;
 
   public static final int STATUS_WATCHING_ANIME = 0;
   public static final int STATUS_REVIEWING_WORK = 1;
@@ -24,7 +25,7 @@ public class ProjectManager extends Employee {
 
   @Override
   public int getSalary() {
-    return SALARY;
+    return SALARY - FAULT_DISCOUNT * currentFaults;
   }
 
   public void registerFault() {
@@ -70,7 +71,7 @@ public class ProjectManager extends Employee {
       try {
         if (reviewCount < getReviewCount()) {
           status = STATUS_WATCHING_ANIME;
-          notifyAndSleep(getAnimeDelay(),"anime");
+          notifyAndSleep(getAnimeDelay(), "anime");
           status = STATUS_REVIEWING_WORK;
           notifyAndSleep(getReviewDelay(), "review");
           reviewCount += 1;
@@ -86,15 +87,15 @@ public class ProjectManager extends Employee {
       }
     }
   };
- 
+
   public void notifyAndSleep(long time, String type) throws InterruptedException {
     super.getStudio().getStudioView().actualizePMStatus();
-      switch (type) {
-          case "anime" -> Thread.sleep(time);
-          case "review" -> Thread.sleep(time);
-          case "deadline" -> Thread.sleep(time);
-          default -> {
-          }
+    switch (type) {
+      case "anime" -> Thread.sleep(time);
+      case "review" -> Thread.sleep(time);
+      case "deadline" -> Thread.sleep(time);
+      default -> {
       }
+    }
   }
 }
