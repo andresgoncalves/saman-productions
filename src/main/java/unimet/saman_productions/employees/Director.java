@@ -34,8 +34,8 @@ public class Director extends Employee {
                   + plotTwistEpisodeCount * getStudio().getPlotTwistProfit());
           getStudio().resetDeadlineCounter();
 
-          System.out.println("Deadline encontrada. Se publicaron %d episodios estándar y %d plot twist."
-              .formatted(standardEpisodeCount, plotTwistEpisodeCount));
+          System.out.println("Deadline encontrada. Se publicaron %d episodios estándar y %d plot twist. %s"
+              .formatted(standardEpisodeCount, plotTwistEpisodeCount, getStudio().getName()));
 
           notifyFinalDay();
           notifyAndSleep(daysToMilliseconds(1));

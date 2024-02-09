@@ -28,12 +28,12 @@ public class Assembler extends Employee {
         notifyAndSleep(getDelay());
         if (plotTwistGapCount == getStudio().getPlotTwistGap()) {
           if (getStudio().assemblePlotTwistEpisode()) {
-            System.out.println("PlotTwist Creado");
+            System.out.println("PlotTwist Creado. " + getStudio().getName());
             plotTwistGapCount = 0;
           }
         } else {
           if (getStudio().assembleStandardEpisode()) {
-            System.out.println("Episodio Creado");
+            System.out.println("Episodio Creado. " + getStudio().getName());
             plotTwistGapCount += 1;
           }
         }

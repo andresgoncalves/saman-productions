@@ -885,7 +885,6 @@ public class MainFrame extends javax.swing.JFrame {
                 lector.actualizarDatos(pathTxt, guionistasNumber, designersNumber, animadoresNumber, actoresDoblaje,
                         guionistasNumber, ensambladoresNumber, segundosDay,
                         deadline);
-                System.out.println(isRunning);
                 if (isRunning) {
                     starchannel.getEmployeeManager().updateEmployeeNumbers(guionistasNumber, designersNumber,
                             animadoresNumber, actoresDoblaje, guionistasPlotTwist, ensambladoresNumber);

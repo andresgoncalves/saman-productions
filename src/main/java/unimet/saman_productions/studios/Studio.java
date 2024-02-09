@@ -150,7 +150,6 @@ public abstract class Studio {
     registerExpense(employeeManager.getDirector().getSalary());
     registerExpense(employeeManager.getProjectManager().getSalary());
     employeeManager.getProjectManager().clearFaults();
-    System.out.println("Utilidad: " + getTotalUtility() + " " + getName());
   }
 
   public void registerEarning(int amount) {
